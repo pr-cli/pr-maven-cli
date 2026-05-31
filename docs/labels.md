@@ -42,6 +42,7 @@ Use area labels to show the affected surface:
 
 Use these labels to signal contribution fit:
 
+- `good first issue`: GitHub-standard newcomer discovery label. Keep it alongside `good first contribution` so new contributors can find approachable work through GitHub search and issue filters.
 - `good first contribution`: low-context contribution with clear acceptance criteria.
 - `oss first friendly`: suitable for a first OSS pull request.
 - `help wanted`: maintainers are actively inviting implementation help.

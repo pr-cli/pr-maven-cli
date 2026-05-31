@@ -137,6 +137,7 @@ Issue quality standard:
 
 Preferred labels:
 
+- `good first issue`
 - `good first contribution`
 - `help wanted`
 - `area: parser`

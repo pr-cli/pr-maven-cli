@@ -150,13 +150,13 @@ flowchart LR
     READY["status: ready\nContributor can start"] --> PR["Focused PR\nTests/docs included"]
     BLOCKED["status: blocked\nNeeds dependency or design decision"] --> GATE["Wait for gate issue or dependency"]
     HELP["help wanted / need help\nMaintainer wants contributions"] --> READY
-    FIRST["good first contribution / oss first friendly\nLow context contribution"] --> READY
+    FIRST["good first issue / good first contribution / oss first friendly\nLow context contribution"] --> READY
 ```
 
 When in doubt:
 
 - Prefer `status: ready` issues for immediate work.
-- Prefer `good first contribution` or `oss first friendly` issues for new contributors.
+- Prefer `good first issue`, `good first contribution`, or `oss first friendly` issues for new contributors.
 - Avoid implementation-heavy Stage 3 issues until the related design contract issues are done.
 - Keep every issue tied to a stage label, area label, and status label.
 
