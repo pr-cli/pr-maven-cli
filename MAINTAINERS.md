@@ -25,9 +25,13 @@ External contributors are welcome to open issues and pull requests. A maintainer
 
 The default branch is `main`. It should stay protected and use the `All CI checks` status as the required CI gate.
 
+Pull requests should require at least one approving review and review from the repository code owner before merge.
+
 GitHub repository permissions should keep merge rights limited to users with write, maintain, or admin access. External contributors can propose changes through issues and pull requests, but they should not have merge access.
 
 Label policy is documented in [docs/labels.md](docs/labels.md). Pull requests should not be merged while unlabeled when they affect release notes, roadmap order, or contributor-facing backlog state.
+
+While `@Will-thom` is the only maintainer and only repository-wide code owner, the repository may keep a founder bypass for required pull request reviews to avoid deadlocking founder-authored maintenance PRs. The bypass should be treated as an operational escape hatch, not the normal review path.
 
 ## Maintainer Path
 
@@ -35,4 +39,4 @@ Additional maintainers may be invited after sustained, high-quality contribution
 
 Maintainer access should stay intentionally small while the project is young.
 
-Before inviting additional maintainers with write access, update branch protection to require at least one pull request review. Consider requiring code owner review for changes to production code, GitHub workflows, release automation, JSON output contracts, and CLI user-facing behavior.
+After adding another trusted maintainer or code owner, remove any founder review bypass and keep required code owner review as the normal merge gate.

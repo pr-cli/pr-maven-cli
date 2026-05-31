@@ -23,6 +23,8 @@ The public repository must keep `main` protected before accepting outside contri
 Required public-mode controls:
 
 - Require the `All CI checks` status before merge.
+- Require at least one approving pull request review before merge.
+- Require review from the repository code owner before merge.
 - Enforce the rule for administrators.
 - Require conversation resolution before merge.
 - Disable force pushes.
@@ -31,12 +33,12 @@ Required public-mode controls:
 - Keep merge rights limited to users with write, maintain, or admin access.
 - Keep `@Will-thom` as the repository-wide code owner through `.github/CODEOWNERS`.
 
-Before adding additional maintainers or collaborators with write access:
+Founder deadlock prevention:
 
-- require at least one pull request review before merge;
-- consider requiring code owner review for production code, workflows, release automation, and output contracts;
-- keep direct pushes to `main` disabled through branch protection;
-- document any intentional exception in `MAINTAINERS.md`.
+- `@Will-thom` may be configured as a pull request review bypass actor while the project has only one maintainer.
+- This bypass exists to prevent the founder from being unable to merge founder-authored maintenance PRs.
+- It should be used only when CI is green, conversations are resolved, labels are correct, and the change is intentionally scoped.
+- Remove the bypass after at least one additional trusted maintainer or code owner can review founder-authored PRs.
 
 ## GitHub Actions Permissions
 
@@ -84,6 +86,8 @@ Before actively inviting OSS contributors:
 1. Validate branch protection for `main`.
 2. Confirm `All CI checks` is the required status gate.
 3. Confirm `CODEOWNERS` still routes ownership to `@Will-thom`.
-4. Confirm secret scanning, push protection, and Dependabot security updates are still enabled.
-5. Confirm no unintended collaborators, secrets, variables, webhooks, environments, deployments, releases, or pages were added.
-6. Re-run CI and Security on `main`.
+4. Confirm pull request reviews and code owner review are required.
+5. Confirm any founder bypass is still intentional and documented.
+6. Confirm secret scanning, push protection, and Dependabot security updates are still enabled.
+7. Confirm no unintended collaborators, secrets, variables, webhooks, environments, deployments, releases, or pages were added.
+8. Re-run CI and Security on `main`.

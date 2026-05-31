@@ -14,6 +14,8 @@ The project follows a conservative OSS posture inspired by mature Maven ecosyste
 
 - `main` is the default branch.
 - `main` requires the `All CI checks` status before merge.
+- `main` requires at least one approving pull request review before merge.
+- `main` requires code owner review before merge.
 - `main` blocks force pushes and branch deletion.
 - Pull request head branches are deleted after merge.
 - Conversation resolution is required before merge.
@@ -54,8 +56,8 @@ Stage 3 provider adapters must be additive. Provider failures should not erase l
 
 Before adding maintainers or collaborators with write access, maintainers should:
 
-- require at least one pull request review;
-- consider requiring code owner review for production code and workflow changes;
+- confirm required pull request review and code owner review are still enabled;
+- remove any founder-only review bypass once another trusted maintainer or code owner can review founder-authored PRs;
 - confirm only maintainers can merge;
 - confirm `All CI checks` remains the required protected status;
 - confirm no unexpected secrets, variables, webhooks, environments, deployments, or Pages configuration exists.
@@ -72,8 +74,6 @@ Before adding maintainers or collaborators with write access, maintainers should
 
 These controls are intentionally deferred until they fit the maintainer model:
 
-- required pull request review while the project has only one maintainer;
-- code owner review requirement;
 - GitHub Actions allowlist or SHA pinning;
 - signed tags;
 - SBOM generation and SBOM attestations.
