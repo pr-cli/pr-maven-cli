@@ -27,4 +27,5 @@ The public repository uses GitHub's free public-repository security controls whe
 - push protection for supported secret patterns;
 - Dependabot security updates;
 - CodeQL and govulncheck in GitHub Actions;
-- release artifact provenance through GitHub artifact attestations.
+- release artifact provenance through GitHub artifact attestations;
+- release package SBOMs and SBOM attestations.

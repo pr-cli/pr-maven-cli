@@ -74,7 +74,11 @@ Release artifacts:
 - macOS amd64 and arm64 tarballs.
 - Windows amd64 zip.
 - SHA-256 checksum files.
+- SPDX JSON SBOM files for each package.
 - GitHub artifact attestations for packages and checksum files.
+- GitHub SBOM attestations binding each package archive to its SBOM.
+
+SBOM generation uses `anchore/sbom-action` with Syft pinned in the workflow. Update the pinned Syft version intentionally when refreshing the release supply-chain toolchain.
 
 The tag version is embedded in the CLI through:
 
@@ -82,7 +86,7 @@ The tag version is embedded in the CLI through:
 prmaven version
 ```
 
-The workflow defaults to `contents: read`. Package jobs receive `id-token: write` and `attestations: write` only to generate GitHub artifact attestations. Only the release publishing job receives `contents: write`.
+The workflow defaults to `contents: read`. Package jobs receive `id-token: write` and `attestations: write` only to generate GitHub artifact and SBOM attestations. Only the release publishing job receives `contents: write`.
 
 Repository permission posture is documented in [permissions.md](permissions.md).
 
