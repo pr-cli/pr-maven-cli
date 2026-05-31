@@ -49,12 +49,18 @@ Workflow-specific policy:
 
 - `CI` uses `contents: read`.
 - `Security` uses `contents: read`, `security-events: write`, and `pull-requests: read`.
-- `Release` defaults to `contents: read`; only the release publishing job receives `contents: write`.
+- `Release` defaults to `contents: read`; package jobs receive `id-token: write` and `attestations: write` only for GitHub artifact attestations; only the release publishing job receives `contents: write`.
 - `Thank Contributor` uses `pull_request_target` only to read the base repository template through the GitHub API and write a comment. It must not check out or execute contributor code.
 
-## Secrets And External Integrations
+## Code Security And External Integrations
 
 The project should avoid repository secrets for the Stage 1 local-first MVP.
+
+Enabled public-repository security controls:
+
+- Secret scanning.
+- Secret scanning push protection.
+- Dependabot security updates.
 
 Expected empty surfaces during stabilization:
 
@@ -72,5 +78,6 @@ Before actively inviting OSS contributors:
 1. Validate branch protection for `main`.
 2. Confirm `All CI checks` is the required status gate.
 3. Confirm `CODEOWNERS` still routes ownership to `@Will-thom`.
-4. Confirm no unintended collaborators, secrets, variables, webhooks, environments, deployments, releases, or pages were added.
-5. Re-run CI and Security on `main`.
+4. Confirm secret scanning, push protection, and Dependabot security updates are still enabled.
+5. Confirm no unintended collaborators, secrets, variables, webhooks, environments, deployments, releases, or pages were added.
+6. Re-run CI and Security on `main`.

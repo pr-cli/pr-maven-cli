@@ -18,3 +18,13 @@ Do not include private CI logs, credentials, tokens, proprietary source code, or
 - No external network calls in the core analyzer.
 - No credentials required for local report analysis.
 - GitHub or GitLab integrations must remain optional.
+
+## Repository Security Controls
+
+The public repository uses GitHub's free public-repository security controls where available:
+
+- secret scanning;
+- push protection for supported secret patterns;
+- Dependabot security updates;
+- CodeQL and govulncheck in GitHub Actions;
+- release artifact provenance through GitHub artifact attestations.

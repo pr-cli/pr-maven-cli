@@ -21,6 +21,7 @@ Before creating a release tag:
 - [ ] Demo and fixture docs describe committed Maven report artifacts.
 - [ ] Release workflow exists for Linux, macOS, and Windows packages.
 - [ ] SHA-256 checksum generation is enabled.
+- [ ] GitHub artifact attestation generation is enabled for release packages and checksums.
 - [ ] The tag version will be embedded in `prmaven version`.
 
 After the release workflow completes:
@@ -30,6 +31,7 @@ After the release workflow completes:
 - [ ] macOS amd64 and arm64 tarballs are attached.
 - [ ] Windows amd64 zip is attached.
 - [ ] A `.sha256` file exists for every package.
+- [ ] GitHub artifact attestations exist for every package and checksum file.
 - [ ] Release notes were generated.
 
 ## Create a Release
@@ -48,8 +50,22 @@ The release workflow will:
 - build Linux, macOS, and Windows binaries;
 - package archives;
 - generate SHA-256 checksums;
+- generate GitHub artifact attestations for package archives and checksum files;
 - create a GitHub release;
 - generate release notes from GitHub metadata.
+
+## Verify Release Provenance
+
+Release artifacts are attested with GitHub artifact attestations.
+
+After downloading a package or checksum file, verify its provenance with:
+
+```bash
+gh attestation verify prmaven-v0.1.0-linux-amd64.tar.gz -R pr-cli/pr-maven-cli
+gh attestation verify prmaven-v0.1.0-linux-amd64.tar.gz.sha256 -R pr-cli/pr-maven-cli
+```
+
+Use the matching file name for the target platform and release version.
 
 ## Validate a Local Build
 
