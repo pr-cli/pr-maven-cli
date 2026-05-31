@@ -11,6 +11,8 @@ The Stage 1 test system is designed for:
 
 ## Local Commands
 
+For release and Stage 3 readiness reviews, use the [MVP acceptance checklist](mvp-acceptance.md) alongside the commands below.
+
 Run the standard suite:
 
 ```bash
