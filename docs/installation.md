@@ -17,7 +17,7 @@ Maven itself is not required to run PR Maven CLI if the report files already exi
 ## Install From Source
 
 ```bash
-git clone https://github.com/Will-thom/pr-maven-cli.git
+git clone https://github.com/pr-cli/pr-maven-cli.git
 cd pr-maven-cli
 go test ./...
 go install ./cmd/prmaven
@@ -77,7 +77,7 @@ Windows PowerShell:
 After a tagged release exists, download the archive for your operating system from:
 
 ```text
-https://github.com/Will-thom/pr-maven-cli/releases
+https://github.com/pr-cli/pr-maven-cli/releases
 ```
 
 Then:

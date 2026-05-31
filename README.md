@@ -36,6 +36,7 @@ This is useful for:
 - [Project context](docs/project-context.md)
 - [Roadmap](ROADMAP.md)
 - [Final testable delivery](docs/final-testable-delivery.md)
+- [MVP acceptance checklist](docs/mvp-acceptance.md)
 - [Implementation status](docs/implementation-status.md)
 - [Installation](docs/installation.md)
 - [Usage guide](docs/usage.md)
@@ -111,7 +112,7 @@ Apache's download page currently lists Maven 3.9.16 as the recommended release a
 ## Install From Source
 
 ```bash
-git clone https://github.com/Will-thom/pr-maven-cli.git
+git clone https://github.com/pr-cli/pr-maven-cli.git
 cd pr-maven-cli
 go test ./...
 go install ./cmd/prmaven
@@ -183,7 +184,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/Will-thom/pr-maven-cli/pkg/prmaven"
+	"github.com/pr-cli/pr-maven-cli/pkg/prmaven"
 )
 
 func main() {
