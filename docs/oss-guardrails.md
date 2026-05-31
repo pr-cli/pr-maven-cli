@@ -15,6 +15,7 @@ The project follows a conservative OSS posture inspired by mature Maven ecosyste
 - `main` is the default branch.
 - `main` requires the `All CI checks` status before merge.
 - `main` blocks force pushes and branch deletion.
+- Pull request head branches are deleted after merge.
 - Conversation resolution is required before merge.
 - Repository workflow token permissions default to `contents: read`.
 - Core analysis must not require network access, provider tokens, telemetry, AI services, or hosted APIs.

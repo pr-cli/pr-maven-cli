@@ -27,6 +27,7 @@ Required public-mode controls:
 - Require conversation resolution before merge.
 - Disable force pushes.
 - Disable branch deletion.
+- Delete pull request head branches after merge.
 - Keep merge rights limited to users with write, maintain, or admin access.
 - Keep `@Will-thom` as the repository-wide code owner through `.github/CODEOWNERS`.
 

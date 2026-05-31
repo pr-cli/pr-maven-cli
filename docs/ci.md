@@ -115,4 +115,6 @@ Keep security checks visible, but avoid making scheduled security tooling a bloc
 
 Only users with maintainer-level repository permissions should merge pull requests. See [MAINTAINERS.md](../MAINTAINERS.md).
 
+Delete pull request head branches after merge so the repository does not accumulate stale contribution branches.
+
 Before adding more maintainers, require at least one pull request review and consider requiring code owner review for changes that touch production code, workflows, release automation, or public output contracts.
