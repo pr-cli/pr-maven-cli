@@ -212,5 +212,5 @@ Remove generated smoke-test files before committing.
 - [x] Golden text-output tests exist.
 - [x] CI and release workflows exist.
 - [x] Installation, usage, testing, CI, integration, release, and permission docs exist.
-- [ ] Release tag is cut.
-- [ ] Release artifacts are published.
+- [x] Release tag is cut.
+- [x] Release artifacts are published.
