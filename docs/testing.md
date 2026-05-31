@@ -71,10 +71,13 @@ Package: `cmd/prmaven`.
 
 Coverage includes:
 
+- building the real CLI binary in a temporary directory for acceptance testing;
+- running the failure and no-failure demo workspaces through the compiled CLI;
 - `fails` text output;
 - `why` JSON output;
 - non-zero exit when findings exist;
 - zero exit when no findings exist;
+- parseable JSON output for both finding and no-finding workflows;
 - invalid command and invalid format handling.
 
 ### Demo Fixtures
