@@ -18,6 +18,11 @@ func main() {
 }
 
 func run(args []string, stdout, stderr io.Writer) int {
+	if wantsHelp(args) {
+		writeUsage(stdout)
+		return 0
+	}
+
 	command := "fails"
 	if len(args) > 0 && args[0] != "" && args[0][0] != '-' {
 		command = args[0]
@@ -26,12 +31,16 @@ func run(args []string, stdout, stderr io.Writer) int {
 
 	flags := flag.NewFlagSet("prmaven", flag.ContinueOnError)
 	flags.SetOutput(stderr)
+	flags.Usage = func() {
+		writeUsage(stderr)
+	}
 	projectDir := flags.String("project", ".", "Maven project directory")
 	format := flags.String("format", "text", "output format: text or json")
 	moduleFilter := flags.String("module", "", "limit findings to a Maven module path or artifactId")
 	outputPath := flags.String("output", "", "write output to file instead of stdout")
 
 	if err := flags.Parse(args); err != nil {
+		writeUsage(stderr)
 		return 2
 	}
 
@@ -40,11 +49,16 @@ func run(args []string, stdout, stderr io.Writer) int {
 	}
 
 	switch command {
-	case "fails", "why", "version":
+	case "fails", "why", "version", "help":
 	default:
 		fmt.Fprintf(stderr, "unknown command %q\n", command)
-		fmt.Fprintln(stderr, "available commands: fails, why, version")
+		writeUsage(stderr)
 		return 2
+	}
+
+	if command == "help" {
+		writeUsage(stdout)
+		return 0
 	}
 
 	if command == "version" {
@@ -101,6 +115,57 @@ func run(args []string, stdout, stderr io.Writer) int {
 		return 1
 	}
 	return 0
+}
+
+func wantsHelp(args []string) bool {
+	if len(args) > 0 && args[0] == "help" {
+		return true
+	}
+	for _, arg := range args {
+		switch arg {
+		case "-h", "--help", "-help":
+			return true
+		}
+	}
+	return false
+}
+
+func writeUsage(w io.Writer) {
+	fmt.Fprint(w, `PR Maven CLI - Maven-aware PR/CI failure context
+
+Usage:
+  prmaven [command] [flags]
+
+Commands:
+  fails     Analyze local Maven reports and print actionable failure context.
+  why       Analyze local Maven reports; reserved for richer causality context.
+  version   Print the CLI version.
+  help      Print this help.
+
+Flags:
+  -project string
+      Maven project directory to analyze. Defaults to ".".
+  -format string
+      Output format: text or json. Defaults to "text".
+  -module string
+      Limit findings to a Maven module path or artifactId.
+  -output string
+      Write output to a file instead of stdout.
+  -h, -help, --help
+      Print this help.
+
+Examples:
+  prmaven fails -project .
+  prmaven fails -project . -format json
+  prmaven why -project . -module payment-core
+  prmaven why -project . -format json -output prmaven-report.json
+  prmaven version
+
+Exit codes:
+  0  Analysis completed with no findings, or help/version completed.
+  1  Analysis completed with Maven findings, or analysis/output failed.
+  2  Invalid CLI usage.
+`)
 }
 
 func filterReportByModule(report prmaven.Report, moduleFilter string) prmaven.Report {

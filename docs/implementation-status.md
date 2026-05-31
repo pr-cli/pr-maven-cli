@@ -24,6 +24,7 @@ Implemented commands:
 
 - `fails`;
 - `why`;
+- `help`;
 - `version`.
 
 Implemented flags:

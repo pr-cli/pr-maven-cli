@@ -172,6 +172,9 @@ prmaven why -project .
 prmaven why -project . -format json
 prmaven why -project . -module payment-core
 prmaven why -project . -format json -output prmaven-report.json
+prmaven -h
+prmaven help
+prmaven version
 ```
 
 Stage 1 treats `fails` and `why` as equivalent commands. The distinction is reserved for future UX where `fails` may list failures and `why` may include richer causality evidence.

@@ -219,6 +219,72 @@ func TestRunReturnsUsageExitCode(t *testing.T) {
 	if !strings.Contains(stderr.String(), `unknown command "unknown"`) {
 		t.Fatalf("stderr missing unknown command\n%s", stderr.String())
 	}
+	if !strings.Contains(stderr.String(), "Commands:") {
+		t.Fatalf("stderr missing usage commands\n%s", stderr.String())
+	}
+}
+
+func TestRunHelpIncludesCommandsFlagsAndExamples(t *testing.T) {
+	tests := [][]string{
+		{"-h"},
+		{"--help"},
+		{"help"},
+	}
+
+	for _, args := range tests {
+		t.Run(strings.Join(args, " "), func(t *testing.T) {
+			var stdout bytes.Buffer
+			var stderr bytes.Buffer
+
+			code := run(args, &stdout, &stderr)
+			if code != 0 {
+				t.Fatalf("exit code = %d, want 0", code)
+			}
+			if stderr.Len() != 0 {
+				t.Fatalf("stderr = %q, want empty", stderr.String())
+			}
+
+			text := stdout.String()
+			for _, expected := range []string{
+				"Usage:",
+				"Commands:",
+				"fails     Analyze local Maven reports",
+				"why       Analyze local Maven reports",
+				"Flags:",
+				"-project string",
+				"-format string",
+				"-module string",
+				"-output string",
+				"Examples:",
+				"prmaven why -project . -format json -output prmaven-report.json",
+				"Exit codes:",
+			} {
+				if !strings.Contains(text, expected) {
+					t.Fatalf("help output missing %q\n%s", expected, text)
+				}
+			}
+		})
+	}
+}
+
+func TestCLIEndToEndHelp(t *testing.T) {
+	command := exec.Command("go", "run", ".", "-h")
+	output, err := command.CombinedOutput()
+	if err != nil {
+		t.Fatalf("CLI help exit error = %v\n%s", err, string(output))
+	}
+
+	text := string(output)
+	for _, expected := range []string{
+		"PR Maven CLI - Maven-aware PR/CI failure context",
+		"Commands:",
+		"Flags:",
+		"Examples:",
+	} {
+		if !strings.Contains(text, expected) {
+			t.Fatalf("CLI help output missing %q\n%s", expected, text)
+		}
+	}
 }
 
 func TestRunVersion(t *testing.T) {
