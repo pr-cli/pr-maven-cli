@@ -80,8 +80,8 @@ Compatibility expectations:
 | `failureType` | string | Optional source-specific type, rule, category, or threshold metric. |
 | `message` | string | Optional one-line finding message from the source artifact. |
 | `reproduceCommand` | string | Minimal Maven command for reproducing or re-running the relevant check locally. |
-| `confidence` | string | Confidence level for the finding. Current values use `high` for fixture-backed deterministic evidence. |
-| `confidenceReasons` | array of string | Human-readable evidence explaining why the finding is trusted. |
+| `confidence` | string | Confidence level for the finding. See [Confidence](confidence.md). Current schema values use `high` for report-backed deterministic evidence. |
+| `confidenceReasons` | array of string | Human-readable evidence explaining why the finding is trusted. See [Confidence](confidence.md). |
 | `sourceReportFormat` | string | Original source format, such as `junit-xml`, `checkstyle-xml`, `spotbugs-xml`, or `maven-log`. |
 
 ## Demo JSON

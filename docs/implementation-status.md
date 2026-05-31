@@ -129,6 +129,8 @@ The CLI emits:
 - JSON;
 - optional file output.
 
+Current findings emit `high` confidence with human-readable confidence reasons because Stage 1 findings are backed by deterministic Maven report or log artifacts. The `medium` and `low` levels are documented as reserved future vocabulary.
+
 Validated by:
 
 - CLI tests;
@@ -199,7 +201,6 @@ It does not currently fetch artifacts from CI providers, inspect remote pull req
 Near-term priorities:
 
 - keep parser fixtures easy for contributors to extend;
-- document confidence levels;
 - document fixture contribution rules;
 - harden output compatibility expectations;
 - keep issue labels and backlog aligned with the roadmap.
