@@ -51,7 +51,7 @@ Workflow-specific policy:
 
 - `CI` uses `contents: read`.
 - `Security` uses `contents: read`, `security-events: write`, and `pull-requests: read`.
-- `Release` defaults to `contents: read`; package jobs receive `id-token: write` and `attestations: write` only for GitHub artifact attestations; only the release publishing job receives `contents: write`.
+- `Release` defaults to `contents: read`; package jobs receive `id-token: write` and `attestations: write` only for GitHub artifact and SBOM attestations; only the release publishing job receives `contents: write`.
 - `Thank Contributor` uses `contents: read`, `issues: write`, and `pull-requests: write` only to read the base repository template through the GitHub API and write a comment. It must not check out or execute contributor code.
 
 ## Code Security And External Integrations

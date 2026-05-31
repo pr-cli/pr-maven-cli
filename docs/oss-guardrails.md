@@ -36,7 +36,7 @@ The project follows a conservative OSS posture inspired by mature Maven ecosyste
 - Workflows that run contributor code must use minimal permissions.
 - `pull_request_target` workflows must never check out or execute contributor code.
 - Comment-only automations may read base-repository templates and write comments.
-- Release package jobs may receive `id-token: write` and `attestations: write` only to generate GitHub artifact attestations.
+- Release package jobs may receive `id-token: write` and `attestations: write` only to generate GitHub artifact and SBOM attestations.
 - Release publishing jobs may receive `contents: write`; other jobs should stay read-only unless a specific need is documented.
 
 ## Local-First Product Guardrail
@@ -65,8 +65,11 @@ Before adding maintainers or collaborators with write access, maintainers should
 ## Release Guardrails
 
 - Keep release tags aligned with the roadmap release line.
+- Prefer signed annotated release tags created by the founder or a trusted release maintainer.
 - Preserve checksum generation for binary artifacts.
+- Preserve SPDX JSON SBOM generation for release packages.
 - Preserve GitHub artifact attestation generation for release packages and checksums.
+- Preserve GitHub SBOM attestation generation for release packages.
 - Keep JSON compatibility changes additive unless a breaking change is explicitly planned.
 - Document release readiness in `docs/release.md` and the MVP/release checklists.
 
@@ -75,7 +78,7 @@ Before adding maintainers or collaborators with write access, maintainers should
 These controls are intentionally deferred until they fit the maintainer model:
 
 - GitHub Actions allowlist or SHA pinning;
-- signed tags;
-- SBOM generation and SBOM attestations.
+- enforced signed-tag rulesets;
+- SBOM vulnerability policy and minimum severity gates.
 
 They should be reconsidered before adding more maintainers or before a larger public contribution push.

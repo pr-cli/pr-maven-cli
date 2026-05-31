@@ -87,8 +87,24 @@ jobs:
             tar -czf "${package}.tar.gz" "$package"
           fi
           sha256sum "${package}.${{ matrix.archive }}" > "${package}.${{ matrix.archive }}.sha256"
+          echo "package_dir=dist/${package}" >> "$GITHUB_OUTPUT"
           echo "archive_path=dist/${package}.${{ matrix.archive }}" >> "$GITHUB_OUTPUT"
           echo "checksum_path=dist/${package}.${{ matrix.archive }}.sha256" >> "$GITHUB_OUTPUT"
+          echo "sbom_path=dist/${package}.sbom.spdx.json" >> "$GITHUB_OUTPUT"
+          echo "sbom_checksum_path=dist/${package}.sbom.spdx.json.sha256" >> "$GITHUB_OUTPUT"
+
+      - name: Generate package SBOM
+        uses: anchore/sbom-action@v0
+        with:
+          path: ${{ steps.package.outputs.package_dir }}
+          format: spdx-json
+          output-file: ${{ steps.package.outputs.sbom_path }}
+          syft-version: v1.44.0
+          upload-artifact: false
+          upload-release-assets: false
+
+      - name: Generate SBOM checksum
+        run: sha256sum "${{ steps.package.outputs.sbom_path }}" > "${{ steps.package.outputs.sbom_checksum_path }}"
 
       - name: Generate package provenance attestation
         uses: actions/attest@v4
@@ -100,6 +116,17 @@ jobs:
         with:
           subject-path: ${{ steps.package.outputs.checksum_path }}
 
+      - name: Generate package SBOM attestation
+        uses: actions/attest@v4
+        with:
+          subject-path: ${{ steps.package.outputs.archive_path }}
+          sbom-path: ${{ steps.package.outputs.sbom_path }}
+
+      - name: Generate SBOM file provenance attestation
+        uses: actions/attest@v4
+        with:
+          subject-path: ${{ steps.package.outputs.sbom_path }}
+
       - name: Upload package artifacts
         uses: actions/upload-artifact@v7
         with:
@@ -108,6 +135,8 @@ jobs:
             dist/*.tar.gz
             dist/*.zip
             dist/*.sha256
+            dist/*.sbom.spdx.json
+            dist/*.sbom.spdx.json.sha256
 
   release:
     name: Publish GitHub release
@@ -131,4 +160,6 @@ jobs:
             dist/*.tar.gz
             dist/*.zip
             dist/*.sha256
+            dist/*.sbom.spdx.json
+            dist/*.sbom.spdx.json.sha256
           generate_release_notes: true
