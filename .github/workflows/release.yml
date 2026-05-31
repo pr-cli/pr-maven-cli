@@ -22,6 +22,10 @@ jobs:
   package:
     name: Package (${{ matrix.goos }}/${{ matrix.goarch }})
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+      attestations: write
     strategy:
       fail-fast: false
       matrix:
@@ -53,6 +57,7 @@ jobs:
           cache: false
 
       - name: Build package
+        id: package
         env:
           CGO_ENABLED: "0"
           GOOS: ${{ matrix.goos }}
@@ -82,6 +87,18 @@ jobs:
             tar -czf "${package}.tar.gz" "$package"
           fi
           sha256sum "${package}.${{ matrix.archive }}" > "${package}.${{ matrix.archive }}.sha256"
+          echo "archive_path=dist/${package}.${{ matrix.archive }}" >> "$GITHUB_OUTPUT"
+          echo "checksum_path=dist/${package}.${{ matrix.archive }}.sha256" >> "$GITHUB_OUTPUT"
+
+      - name: Generate package provenance attestation
+        uses: actions/attest@v4
+        with:
+          subject-path: ${{ steps.package.outputs.archive_path }}
+
+      - name: Generate checksum provenance attestation
+        uses: actions/attest@v4
+        with:
+          subject-path: ${{ steps.package.outputs.checksum_path }}
 
       - name: Upload package artifacts
         uses: actions/upload-artifact@v7

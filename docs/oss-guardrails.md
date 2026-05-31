@@ -18,6 +18,7 @@ The project follows a conservative OSS posture inspired by mature Maven ecosyste
 - Pull request head branches are deleted after merge.
 - Conversation resolution is required before merge.
 - Repository workflow token permissions default to `contents: read`.
+- Secret scanning, secret scanning push protection, and Dependabot security updates are enabled for the public repository.
 - Core analysis must not require network access, provider tokens, telemetry, AI services, or hosted APIs.
 
 ## Contributor Safety
@@ -33,6 +34,7 @@ The project follows a conservative OSS posture inspired by mature Maven ecosyste
 - Workflows that run contributor code must use minimal permissions.
 - `pull_request_target` workflows must never check out or execute contributor code.
 - Comment-only automations may read base-repository templates and write comments.
+- Release package jobs may receive `id-token: write` and `attestations: write` only to generate GitHub artifact attestations.
 - Release publishing jobs may receive `contents: write`; other jobs should stay read-only unless a specific need is documented.
 
 ## Local-First Product Guardrail
@@ -62,6 +64,7 @@ Before adding maintainers or collaborators with write access, maintainers should
 
 - Keep release tags aligned with the roadmap release line.
 - Preserve checksum generation for binary artifacts.
+- Preserve GitHub artifact attestation generation for release packages and checksums.
 - Keep JSON compatibility changes additive unless a breaking change is explicitly planned.
 - Document release readiness in `docs/release.md` and the MVP/release checklists.
 
@@ -72,6 +75,7 @@ These controls are intentionally deferred until they fit the maintainer model:
 - required pull request review while the project has only one maintainer;
 - code owner review requirement;
 - GitHub Actions allowlist or SHA pinning;
-- signed tags, provenance, or SBOM generation.
+- signed tags;
+- SBOM generation and SBOM attestations.
 
 They should be reconsidered before adding more maintainers or before a larger public contribution push.

@@ -17,6 +17,7 @@ Use GitHub-standard type labels where possible:
 - `enhancement`: user-facing or maintainer-facing improvements.
 - `documentation`: documentation-only changes.
 - `maintenance`: dependency, CI, release, or repository upkeep.
+- `security`: security controls, vulnerability handling, or supply-chain hardening.
 
 This mirrors the mature OSS convention used by Apache Maven, where issue and pull request labels classify work for release notes and contributor discovery.
 

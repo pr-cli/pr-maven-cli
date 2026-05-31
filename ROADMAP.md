@@ -148,6 +148,7 @@ Preferred labels:
 - `enhancement`
 - `documentation`
 - `maintenance`
+- `security`
 - `difficulty: focused`
 - `agent-friendly`
 
