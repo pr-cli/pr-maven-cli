@@ -11,7 +11,7 @@ flowchart LR
     S1["Stage 1\nv0.1.0 shipped\nLocal Maven report MVP"] --> S2["Stage 2 remaining\nDocs and ergonomics\n#17 #18 #19 #20"]
     S2 --> S21["Stage 2.1\nMVP hardening\nValidation and readiness"]
     S21 --> GATE["Stage 3 readiness gate\n#79 #80 #102"]
-    GATE --> S3PLAN["Stage 3 planning\nRelease acceptance and dependency map\n#100 #101"]
+    GATE --> S3PLAN["Stage 3 planning\nRelease acceptance and dependency map\n#100, #101 shipped"]
     S3PLAN --> S3DESIGN["Stage 3 design contracts\nProvider boundaries, mocks, fixtures, JSON, UX"]
     S3DESIGN --> S3BUILD["Stage 3 implementation\nOptional PR and CI context layer"]
     S3BUILD --> V03["v0.3.0 target\nPR and CI context release"]
@@ -54,7 +54,7 @@ flowchart TD
     L3["Stage 2.1 validation fixtures\nGolden JSON and fixture integrity\n#69 #70 #72"]
     L4["Stage 2.1 CI and E2E\nSchema validation, smoke tests, output/module matrices\n#67 #68 #71 #73 #74 #76"]
     L5["Stage 2.1 gates\nPR checklist, Stage 3 readiness, no-network guard, label review\n#77 #79 #80 #102"]
-    L6["Stage 3 planning\nv0.3.0 acceptance and visual map\n#100 #101"]
+    L6["Stage 3 planning\nv0.3.0 acceptance and visual map\n#100, #101 shipped"]
     L7["Stage 3 design contracts\nProvider boundaries, fixtures, permissions, JSON, UX\n#82-#94"]
     L8["Stage 3 implementation\nGitHub adapters, scoring, commands, summaries, evidence bundles\n#21-#29 #34 #36"]
     L9["Stage 3 research and distribution\nSARIF, annotations, Maven 4, GitLab, package managers, privacy\n#30-#33 #35 #37-#40"]
@@ -79,7 +79,7 @@ Recommended maintainer order:
 flowchart TD
     R0["Stage 2.1 readiness\n#79 #80 #102"]
     R1["v0.3.0 release acceptance\n#100"]
-    R2["Visual dependency map\n#101"]
+    R2["Visual dependency map shipped\n#101"]
     P0["Provider context planning\n#82"]
     P1["Error and offline fallback taxonomy\n#83"]
     P2["Provider adapter package boundaries\n#84"]
@@ -171,7 +171,7 @@ flowchart LR
     C --> D["Close #71 #73"]
     D --> E["Close #67 #68 #74 #76"]
     E --> F["Close #77 #79 #80 #102"]
-    F --> G["Close #100 #101"]
+    F --> G["Close #100 and keep #101 current"]
     G --> H["Unblock early Stage 3 design issues"]
 ```
 
@@ -185,5 +185,7 @@ This document is a navigation aid. The source of truth remains:
 - [v0.1.0 release snapshot](release-snapshot-v0.1.0.md)
 - [MVP acceptance checklist](mvp-acceptance.md)
 - [Implementation status](implementation-status.md)
+- [Label guide](labels.md)
+- [OSS guardrails](oss-guardrails.md)
 - GitHub issue labels and issue bodies
 

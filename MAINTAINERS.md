@@ -15,6 +15,7 @@ Only maintainers with repository write, maintain, or admin permissions may merge
 
 External contributors are welcome to open issues and pull requests. A maintainer is responsible for checking:
 
+- issue and pull request labels;
 - roadmap stage or milestone;
 - CI status;
 - security checks when applicable;
@@ -26,8 +27,12 @@ The default branch is `main`. It should stay protected and use the `All CI check
 
 GitHub repository permissions should keep merge rights limited to users with write, maintain, or admin access. External contributors can propose changes through issues and pull requests, but they should not have merge access.
 
+Label policy is documented in [docs/labels.md](docs/labels.md). Pull requests should not be merged while unlabeled when they affect release notes, roadmap order, or contributor-facing backlog state.
+
 ## Maintainer Path
 
 Additional maintainers may be invited after sustained, high-quality contributions and review participation.
 
 Maintainer access should stay intentionally small while the project is young.
+
+Before inviting additional maintainers with write access, update branch protection to require at least one pull request review. Consider requiring code owner review for changes to production code, GitHub workflows, release automation, JSON output contracts, and CLI user-facing behavior.

@@ -47,6 +47,8 @@ This is useful for:
 - [Examples](examples/README.md)
 - [Integrations](docs/integrations.md)
 - [Contributing](CONTRIBUTING.md)
+- [Label guide](docs/labels.md)
+- [OSS guardrails](docs/oss-guardrails.md)
 - [Permission posture](docs/permissions.md)
 - [Testing](docs/testing.md)
 - [CI/CD](docs/ci.md)

@@ -27,8 +27,16 @@ Required public-mode controls:
 - Require conversation resolution before merge.
 - Disable force pushes.
 - Disable branch deletion.
+- Delete pull request head branches after merge.
 - Keep merge rights limited to users with write, maintain, or admin access.
 - Keep `@Will-thom` as the repository-wide code owner through `.github/CODEOWNERS`.
+
+Before adding additional maintainers or collaborators with write access:
+
+- require at least one pull request review before merge;
+- consider requiring code owner review for production code, workflows, release automation, and output contracts;
+- keep direct pushes to `main` disabled through branch protection;
+- document any intentional exception in `MAINTAINERS.md`.
 
 ## GitHub Actions Permissions
 
@@ -42,7 +50,7 @@ Workflow-specific policy:
 - `CI` uses `contents: read`.
 - `Security` uses `contents: read`, `security-events: write`, and `pull-requests: read`.
 - `Release` defaults to `contents: read`; only the release publishing job receives `contents: write`.
-- `Thank Contributor` uses `pull_request_target` only to read the base repository template and write a comment. It must not check out or execute contributor code.
+- `Thank Contributor` uses `pull_request_target` only to read the base repository template through the GitHub API and write a comment. It must not check out or execute contributor code.
 
 ## Secrets And External Integrations
 

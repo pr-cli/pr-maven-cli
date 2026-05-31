@@ -1,7 +1,7 @@
 name: Feature request
 description: Propose a focused PR Maven CLI improvement
 title: "[Feature]: "
-labels: ["type: enhancement"]
+labels: ["enhancement"]
 body:
   - type: textarea
     id: problem

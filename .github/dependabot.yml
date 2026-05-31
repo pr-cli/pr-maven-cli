@@ -8,7 +8,7 @@ updates:
       time: "10:00"
     labels:
       - "area: ci"
-      - "type: enhancement"
+      - "enhancement"
 
   - package-ecosystem: "gomod"
     directory: "/"
@@ -18,4 +18,4 @@ updates:
       time: "10:30"
     labels:
       - "area: release"
-      - "type: enhancement"
+      - "enhancement"

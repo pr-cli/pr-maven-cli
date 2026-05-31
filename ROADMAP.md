@@ -137,15 +137,17 @@ Issue quality standard:
 
 Preferred labels:
 
-- `good first issue`
+- `good first contribution`
 - `help wanted`
 - `area: parser`
 - `area: cli`
 - `area: docs`
 - `area: test`
 - `area: ci`
-- `type: bug`
-- `type: enhancement`
+- `bug`
+- `enhancement`
+- `documentation`
+- `maintenance`
 - `difficulty: focused`
 - `agent-friendly`
 

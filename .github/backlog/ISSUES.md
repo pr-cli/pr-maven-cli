@@ -8,7 +8,7 @@ Each item is intentionally scoped so a contributor or automated coding agent can
 
 ### 1. Add Checkstyle XML parser support
 
-Labels: `stage: 2`, `area: parser`, `help wanted`, `good first issue`, `agent-friendly`
+Labels: `stage: 2`, `area: parser`, `help wanted`, `good first contribution`, `agent-friendly`
 
 Acceptance criteria:
 
@@ -63,7 +63,7 @@ Acceptance criteria:
 
 ### 6. Add nested module discovery tests
 
-Labels: `stage: 2`, `area: test`, `good first issue`, `agent-friendly`
+Labels: `stage: 2`, `area: test`, `good first contribution`, `agent-friendly`
 
 Acceptance criteria:
 
@@ -74,7 +74,7 @@ Acceptance criteria:
 
 ### 7. Add Windows and Linux path normalization tests
 
-Labels: `stage: 2`, `area: test`, `good first issue`, `agent-friendly`
+Labels: `stage: 2`, `area: test`, `good first contribution`, `agent-friendly`
 
 Acceptance criteria:
 
@@ -84,7 +84,7 @@ Acceptance criteria:
 
 ### 8. Document the JSON contract
 
-Labels: `stage: 2`, `area: docs`, `good first issue`, `agent-friendly`
+Labels: `stage: 2`, `area: docs`, `good first contribution`, `agent-friendly`
 
 Acceptance criteria:
 
@@ -105,7 +105,7 @@ Acceptance criteria:
 
 ### 10. Add golden tests for text output
 
-Labels: `stage: 2`, `area: test`, `good first issue`, `agent-friendly`
+Labels: `stage: 2`, `area: test`, `good first contribution`, `agent-friendly`
 
 Acceptance criteria:
 
@@ -115,7 +115,7 @@ Acceptance criteria:
 
 ### 11. Add GitHub Actions CI for Go tests
 
-Labels: `stage: 2`, `area: ci`, `good first issue`, `agent-friendly`
+Labels: `stage: 2`, `area: ci`, `good first contribution`, `agent-friendly`
 
 Acceptance criteria:
 
@@ -137,7 +137,7 @@ Acceptance criteria:
 
 ### 13. Add fixture contribution guide
 
-Labels: `stage: 2`, `area: docs`, `good first issue`, `agent-friendly`
+Labels: `stage: 2`, `area: docs`, `good first contribution`, `agent-friendly`
 
 Acceptance criteria:
 
@@ -148,7 +148,7 @@ Acceptance criteria:
 
 ### 14. Add no-failure demo fixture
 
-Labels: `stage: 2`, `area: test`, `good first issue`, `agent-friendly`
+Labels: `stage: 2`, `area: test`, `good first contribution`, `agent-friendly`
 
 Acceptance criteria:
 
@@ -169,7 +169,7 @@ Acceptance criteria:
 
 ### 16. Add output file option
 
-Labels: `stage: 2`, `area: cli`, `good first issue`, `agent-friendly`
+Labels: `stage: 2`, `area: cli`, `good first contribution`, `agent-friendly`
 
 Acceptance criteria:
 
@@ -180,7 +180,7 @@ Acceptance criteria:
 
 ### 17. Add confidence documentation
 
-Labels: `stage: 2`, `area: docs`, `good first issue`
+Labels: `stage: 2`, `area: docs`, `good first contribution`
 
 Acceptance criteria:
 
@@ -190,7 +190,7 @@ Acceptance criteria:
 
 ### 18. Add Maven 3.9 compatibility fixture notes
 
-Labels: `stage: 2`, `area: docs`, `good first issue`
+Labels: `stage: 2`, `area: docs`, `good first contribution`
 
 Acceptance criteria:
 
@@ -200,7 +200,7 @@ Acceptance criteria:
 
 ### 19. Improve CLI help output
 
-Labels: `stage: 2`, `area: cli`, `good first issue`, `agent-friendly`
+Labels: `stage: 2`, `area: cli`, `good first contribution`, `agent-friendly`
 
 Acceptance criteria:
 
@@ -210,12 +210,12 @@ Acceptance criteria:
 
 ### 20. Add maintainer issue labeling guide
 
-Labels: `stage: 2`, `area: docs`, `good first issue`, `agent-friendly`
+Labels: `stage: 2`, `area: docs`, `good first contribution`, `agent-friendly`
 
 Acceptance criteria:
 
 - Add a short maintainer doc for labels.
-- Explain `good first issue`, `help wanted`, and `agent-friendly`.
+- Explain `good first contribution`, `help wanted`, and `agent-friendly`.
 - Include examples of well-scoped issues.
 
 ## Stage 2.1 - MVP Hardening and Validation
@@ -233,11 +233,18 @@ Suggested merge order:
 3. Work unblocked by #66: #67, #68, #75, and #77.
 4. Work unblocked by #70 and #68: #73, #76, #74, and #80.
 5. Stage 3 gate: #79, after #66, #68, #71, and #75.
+6. Stage 3 label unblock review: #102, after #79.
 
 Additional ready documentation work:
 
 - #61 - Clarify deterministic text and JSON terminology.
 - #62 - Document deterministic context principles.
+
+Additional guardrail and release-planning work:
+
+- #100 - Define v0.3.0 release acceptance checklist.
+- #101 - Add Stage 3 dependency map visual. Completed and maintained through `docs/project-visual-map.md`.
+- #102 - Review Stage 3 blocked labels after the readiness gate.
 
 ### Documentation Polish Issues
 
@@ -514,20 +521,64 @@ Provider-context planning root:
 
 Suggested planning merge order:
 
-1. #95 - Add provider-context dependency map to contributor backlog.
-2. #84 and #85 - Define adapter package boundaries and provider fixture/mock contracts.
-3. #83 and #86 - Define provider error fallback behavior and GitHub permission expectations.
-4. #87 and #89 - Define changed-files and check-runs fixture contracts.
-5. #90, #88, and #91 - Define JSON, Markdown, and CLI UX contracts.
-6. #93, #92, and #94 - Define CI artifact, GitLab parity, and agent evidence-bundle contracts.
+1. #100 - Define v0.3.0 release acceptance checklist.
+2. Keep #101 current through the visual project map.
+3. #102 - Review blocked labels after the Stage 3 readiness gate.
+4. #95 - Add provider-context dependency map to contributor backlog.
+5. #84 and #85 - Define adapter package boundaries and provider fixture/mock contracts.
+6. #83 and #86 - Define provider error fallback behavior and GitHub permission expectations.
+7. #87 and #89 - Define changed-files and check-runs fixture contracts.
+8. #90, #88, and #91 - Define JSON, Markdown, and CLI UX contracts.
+9. #93, #92, and #94 - Define CI artifact, GitLab parity, and agent evidence-bundle contracts.
 
 ### Provider-Context Planning Issues
+
+#### P0. Define v0.3.0 release acceptance checklist
+
+Issue: #100
+
+Labels: `stage: 3`, `enhancement`, `area: docs`, `area: validation`, `help wanted`, `need help`, `status: ready`
+
+Acceptance criteria:
+
+- Define the minimum release acceptance checklist for `v0.3.0`.
+- Tie the checklist to the Stage 3 readiness gate and provider-context contracts.
+- Keep provider adapter work optional and additive.
+- Link from the roadmap or visual project map.
+
+#### P0.1. Add Stage 3 dependency map visual
+
+Issue: #101
+
+Status: completed by the visual project map.
+
+Labels: `stage: 3`, `documentation`, `area: docs`, `good first contribution`, `oss first friendly`, `agent-friendly`, `status: ready`
+
+Maintenance criteria:
+
+- Keep `docs/project-visual-map.md` aligned with the GitHub issue state.
+- Update it when Stage 3 dependencies or blocked labels change.
+
+#### P0.2. Review Stage 3 blocked labels after readiness gate
+
+Issue: #102
+
+Depends on: #79.
+
+Labels: `stage: 2.1`, `enhancement`, `area: validation`, `area: docs`, `help wanted`, `need help`, `status: blocked`
+
+Acceptance criteria:
+
+- Review Stage 3 issues currently labeled `status: blocked`.
+- Unblock only design issues whose dependencies are closed.
+- Preserve implementation-heavy issues as blocked until contracts and mocks exist.
+- Update the visual project map when labels change.
 
 #### P1. Add provider-context dependency map to contributor backlog
 
 Issue: #95
 
-Labels: `stage: 3`, `area: docs`, `good first contribution`, `oss first friendly`, `agent-friendly`, `status: ready`
+Labels: `stage: 3`, `documentation`, `area: docs`, `good first contribution`, `oss first friendly`, `agent-friendly`, `status: ready`
 
 Acceptance criteria:
 
@@ -870,7 +921,7 @@ Acceptance criteria:
 
 ### 51. Add privacy guide for CI logs
 
-Labels: `stage: 3`, `area: docs`, `good first issue`, `agent-friendly`
+Labels: `stage: 3`, `area: docs`, `good first contribution`, `agent-friendly`
 
 Acceptance criteria:
 
