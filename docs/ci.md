@@ -57,7 +57,7 @@ Runs on:
 
 The workflow posts the standard thank-you message from `.github/contributor-thanks.md`. It uses a hidden marker to avoid duplicate comments if the workflow is re-run.
 
-For pull requests from forks, the workflow uses `pull_request_target` without checking out or executing contributor code. It reads `.github/contributor-thanks.md` from the base repository through the GitHub API and writes a comment.
+For pull requests from forks, the workflow uses `pull_request_target` without checking out or executing contributor code. It reads `.github/contributor-thanks.md` from the base repository through the GitHub API and writes a comment. It receives `issues: write` and `pull-requests: write` only for that comment flow.
 
 ## Release Workflow
 
