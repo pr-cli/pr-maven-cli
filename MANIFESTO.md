@@ -21,6 +21,8 @@ Will-thom is the public founder identity for this project. The founder's goal is
 - Human-readable and machine-readable output from day one.
 - Useful to individual contributors, maintainers, CI systems, and internal engineering platforms.
 
+`Deterministic before agentic` means PR Maven CLI starts with parsing plus rules over Maven artifacts, not prompts, random ordering, network-required context, or subjective interpretation. See [Deterministic Context](docs/deterministic-context.md).
+
 ## What We Optimize For
 
 - Clear failure context.
