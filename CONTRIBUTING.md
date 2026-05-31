@@ -15,7 +15,7 @@ PR Maven CLI is intentionally designed as a contributor-friendly OSS project. Th
 ## Setup
 
 ```bash
-git clone https://github.com/Will-thom/pr-maven-cli.git
+git clone https://github.com/pr-cli/pr-maven-cli.git
 cd pr-maven-cli
 go test ./...
 ```
