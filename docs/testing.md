@@ -96,6 +96,8 @@ Fixtures live under `demo/`.
 
 The `target/*-reports` directories and selected `target/*.log` files are intentionally versioned because they are stable test fixtures, not local build output.
 
+Fixture compatibility notes, including the Maven 3.9.x production baseline and Maven 4 tracking boundary, are documented in [Fixture Notes](fixtures.md).
+
 ### Golden Files
 
 Golden files live under:

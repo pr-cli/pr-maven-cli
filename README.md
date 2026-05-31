@@ -45,6 +45,7 @@ This is useful for:
 - [JSON contract](docs/json-contract.md)
 - [JSON schema](schema/prmaven-report.schema.json)
 - [Examples](examples/README.md)
+- [Fixture notes](docs/fixtures.md)
 - [Integrations](docs/integrations.md)
 - [Contributing](CONTRIBUTING.md)
 - [Label guide](docs/labels.md)
