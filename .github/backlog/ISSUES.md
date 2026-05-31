@@ -467,6 +467,222 @@ Acceptance criteria:
 
 ## Stage 3 - PR and CI Context Layer
 
+Stage 3 adds optional PR and CI provider context without weakening the local-first Maven analyzer.
+
+Implementation work in this stage should remain gated by the Stage 2.1 readiness gate:
+
+- #79 - `[Stage 2.1] Define Stage 3 readiness gate`
+
+Provider-context planning root:
+
+- #82 - `[Stage 3] Provider context planning map`
+
+Suggested planning merge order:
+
+1. #95 - Add provider-context dependency map to contributor backlog.
+2. #84 and #85 - Define adapter package boundaries and provider fixture/mock contracts.
+3. #83 and #86 - Define provider error fallback behavior and GitHub permission expectations.
+4. #87 and #89 - Define changed-files and check-runs fixture contracts.
+5. #90, #88, and #91 - Define JSON, Markdown, and CLI UX contracts.
+6. #93, #92, and #94 - Define CI artifact, GitLab parity, and agent evidence-bundle contracts.
+
+### Provider-Context Planning Issues
+
+#### P1. Add provider-context dependency map to contributor backlog
+
+Issue: #95
+
+Labels: `stage: 3`, `area: docs`, `good first contribution`, `oss first friendly`, `agent-friendly`, `status: ready`
+
+Acceptance criteria:
+
+- Add the new Stage 3 planning issues to the backlog document.
+- Include dependency notes and suggested merge order.
+- Keep the existing Stage 3 implementation issues visible.
+- Ensure every listed issue has labels.
+
+#### P2. Define provider adapter package boundaries
+
+Issue: #84
+
+Depends on: #79, #22.
+
+Labels: `stage: 3`, `area: architecture`, `help wanted`, `need help`, `status: blocked`
+
+Acceptance criteria:
+
+- Propose package boundaries for core analyzer, provider interfaces, and provider implementations.
+- Explain what cannot import provider-specific code.
+- Include testability expectations for adapters.
+- Document how this preserves local-first behavior.
+
+#### P3. Define provider fixture and mock contract
+
+Issue: #85
+
+Depends on: #79, #22.
+
+Labels: `stage: 3`, `area: architecture`, `area: test`, `help wanted`, `need help`, `agent-friendly`, `status: blocked`
+
+Acceptance criteria:
+
+- Define fixture formats for provider responses.
+- Define fake client behavior for tests.
+- Include success, missing token, rate limit, permission denied, and not found scenarios.
+- Keep tests runnable without provider credentials.
+
+#### P4. Define provider error and offline fallback taxonomy
+
+Issue: #83
+
+Depends on: #79, #84.
+
+Labels: `stage: 3`, `area: architecture`, `area: docs`, `help wanted`, `need help`, `status: blocked`
+
+Acceptance criteria:
+
+- Define errors for missing token, insufficient permissions, network failure, API rate limit, not found, and unsupported provider state.
+- Explain which errors should degrade gracefully.
+- Preserve local Maven findings when provider context fails.
+- Include JSON/reporting expectations for adapter failures.
+
+#### P5. Document GitHub token and permission matrix
+
+Issue: #86
+
+Depends on: #79, #22.
+
+Labels: `stage: 3`, `area: docs`, `area: github`, `good first contribution`, `oss first friendly`, `agent-friendly`, `status: blocked`
+
+Acceptance criteria:
+
+- List planned GitHub operations and required permissions.
+- Distinguish public repository use from private repository use.
+- Explain no-token local analyzer behavior.
+- Link from `docs/integrations.md` or `docs/permissions.md`.
+
+#### P6. Design changed-files fixture contract
+
+Issue: #87
+
+Depends on: #21, #84, #85.
+
+Labels: `stage: 3`, `area: github`, `area: test`, `help wanted`, `need help`, `agent-friendly`, `status: blocked`
+
+Acceptance criteria:
+
+- Define a sanitized fixture shape for changed files.
+- Cover added, modified, deleted, renamed, and nested module files.
+- Include mapping expectations from changed files to Maven modules.
+- Keep fixture tests provider-token-free.
+
+#### P7. Design check-runs fixture contract
+
+Issue: #89
+
+Depends on: #23, #84, #85.
+
+Labels: `stage: 3`, `area: github`, `area: test`, `help wanted`, `need help`, `agent-friendly`, `status: blocked`
+
+Acceptance criteria:
+
+- Define a sanitized fixture shape for check runs.
+- Cover success, failure, skipped, cancelled, timed out, and pending states.
+- Define how check-run metadata enriches Maven findings without replacing report evidence.
+- Keep fixture tests provider-token-free.
+
+#### P8. Design PR context JSON extension contract
+
+Issue: #90
+
+Depends on: #25, #26, #39, #79.
+
+Labels: `stage: 3`, `area: architecture`, `area: docs`, `help wanted`, `need help`, `status: blocked`
+
+Acceptance criteria:
+
+- Propose additive JSON fields for PR context.
+- Preserve current `Report`, `Module`, and `Finding` compatibility expectations.
+- Explain how consumers should ignore unknown future fields.
+- Include examples for report-only and PR-context-enriched output.
+
+#### P9. Define Markdown PR summary content contract
+
+Issue: #88
+
+Depends on: #29, #90.
+
+Labels: `stage: 3`, `area: cli`, `area: docs`, `help wanted`, `need help`, `agent-friendly`, `status: blocked`
+
+Acceptance criteria:
+
+- Define required sections for findings, reproduction commands, confidence, and provider context.
+- Include examples for one finding, multiple findings, and no findings.
+- Keep output suitable for PR comments.
+- Document what must remain deterministic.
+
+#### P10. Define `why`, `explain`, and `ci` command UX boundaries
+
+Issue: #91
+
+Depends on: #27, #28, #79.
+
+Labels: `stage: 3`, `area: cli`, `area: docs`, `help wanted`, `need help`, `oss first friendly`, `status: blocked`
+
+Acceptance criteria:
+
+- Define user intent for `why`, `explain`, and `ci`.
+- Clarify default output formats and exit-code expectations.
+- Avoid breaking Stage 1/2 command behavior.
+- Include examples for local developer and CI usage.
+
+#### P11. Design CI artifact directory fixture layout
+
+Issue: #93
+
+Depends on: #36, #79.
+
+Labels: `stage: 3`, `area: ci`, `area: test`, `help wanted`, `need help`, `agent-friendly`, `status: blocked`
+
+Acceptance criteria:
+
+- Define fixture layouts for source root plus artifact directory.
+- Cover module mapping when artifacts are outside module `target` directories.
+- Document failure modes when mapping is ambiguous.
+- Keep tests local and fixture-driven.
+
+#### P12. Define GitLab parity boundary for provider adapters
+
+Issue: #92
+
+Depends on: #33, #84, #85.
+
+Labels: `stage: 3`, `area: gitlab`, `area: architecture`, `help wanted`, `need help`, `waiting help`, `status: blocked`
+
+Acceptance criteria:
+
+- Identify shared adapter concepts across GitHub and GitLab.
+- Identify GitLab-specific merge request and pipeline metadata differences.
+- Keep GitLab support optional and investigation-first.
+- Recommend whether implementation should wait for GitHub adapter stabilization.
+
+#### P13. Draft agent evidence bundle schema
+
+Issue: #94
+
+Depends on: #34, #90, #79.
+
+Labels: `stage: 3`, `area: agent`, `area: docs`, `help wanted`, `need help`, `waiting help`, `status: blocked`
+
+Acceptance criteria:
+
+- Define additive JSON bundle fields for findings, commands, confidence reasons, relevant files, and provider context.
+- Include report-only and PR-context examples.
+- Avoid prompt-specific instructions or provider lock-in.
+- Link to JSON compatibility expectations.
+
+### Stage 3 Implementation Issues
+
 ### 36. Design GitHub adapter interface
 
 Labels: `stage: 3`, `area: architecture`, `help wanted`
