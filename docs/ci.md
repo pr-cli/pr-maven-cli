@@ -90,6 +90,8 @@ The workflow defaults to `contents: read`. Package jobs receive `id-token: write
 
 Repository permission posture is documented in [permissions.md](permissions.md).
 
+For a reusable CI/CD baseline that can be adapted to other OSS projects, see [CI/CD Reference Template](../TEMPLATE_CI_REFERENCE.md).
+
 ## Local Parity
 
 Before opening a PR, contributors should run:
