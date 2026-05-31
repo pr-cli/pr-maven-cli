@@ -50,6 +50,7 @@ This is useful for:
 - [Integrations](docs/integrations.md)
 - [Contributing](CONTRIBUTING.md)
 - [Label guide](docs/labels.md)
+- [Maintainer labeling guide](docs/maintainer-labeling.md)
 - [OSS guardrails](docs/oss-guardrails.md)
 - [Permission posture](docs/permissions.md)
 - [Testing](docs/testing.md)
