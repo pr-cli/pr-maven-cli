@@ -144,8 +144,10 @@ Preferred labels:
 - `area: docs`
 - `area: test`
 - `area: ci`
-- `type: bug`
-- `type: enhancement`
+- `bug`
+- `enhancement`
+- `documentation`
+- `maintenance`
 - `difficulty: focused`
 - `agent-friendly`
 
