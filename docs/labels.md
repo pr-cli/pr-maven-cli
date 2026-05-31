@@ -2,6 +2,8 @@
 
 This project uses labels as release-note, triage, and contributor-navigation metadata.
 
+For maintainer workflow, contributor-fit decisions, and examples of well-scoped issues, read [Maintainer Labeling Guide](maintainer-labeling.md).
+
 Every public issue and pull request should have at least:
 
 - one type label;

@@ -33,7 +33,7 @@ For the full test strategy, including golden files, CLI end-to-end tests, race t
 
 For the GitHub pipeline, release flow, and branch protection recommendation, read [docs/ci.md](docs/ci.md) and [docs/release.md](docs/release.md).
 
-For issue and pull request taxonomy, read [docs/labels.md](docs/labels.md). Every planned issue and pull request should be labeled so contributors can understand type, area, stage, and readiness.
+For issue and pull request taxonomy, read [docs/labels.md](docs/labels.md). For maintainer-facing labeling workflow and scoped issue examples, read [docs/maintainer-labeling.md](docs/maintainer-labeling.md). Every planned issue and pull request should be labeled so contributors can understand type, area, stage, and readiness.
 
 Every new issue and pull request receives the standard contributor thank-you message from [.github/contributor-thanks.md](.github/contributor-thanks.md). The automation lives in `.github/workflows/thank-contributor.yml`.
 
