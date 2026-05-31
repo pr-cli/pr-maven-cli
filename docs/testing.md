@@ -51,6 +51,8 @@ Package: `pkg/prmaven`.
 
 Coverage includes:
 
+- local-first regression guards that exercise core analysis without provider tokens;
+- static guards against core network/provider-client imports and provider environment reads;
 - Maven module discovery from `pom.xml`;
 - Surefire report parsing;
 - Failsafe report parsing;
@@ -114,7 +116,7 @@ GitHub Actions runs:
 - coverage generation on Linux;
 - a minimum total coverage gate of 70%.
 
-The CI workflow is intentionally dependency-light. Core tests do not require Maven, network services, GitHub tokens, Docker, or external APIs.
+The CI workflow is intentionally dependency-light. Core tests do not require Maven, network services, GitHub tokens, Docker, or external APIs. The `pkg/prmaven` local-first guard fails if production core code starts importing network/provider clients or reading provider environment variables.
 
 ## Contributor Expectations
 

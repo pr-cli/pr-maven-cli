@@ -62,6 +62,12 @@ Enabled public-repository security controls:
 - Secret scanning push protection.
 - Dependabot security updates.
 
+Core analyzer guardrails:
+
+- `pkg/prmaven` tests exercise analysis without GitHub or GitLab provider tokens.
+- Production core code must not import network/provider clients.
+- Production core code must not read provider environment variables.
+
 Expected empty surfaces during stabilization:
 
 - GitHub Actions secrets.
