@@ -34,3 +34,5 @@ Label policy is documented in [docs/labels.md](docs/labels.md). Pull requests sh
 Additional maintainers may be invited after sustained, high-quality contributions and review participation.
 
 Maintainer access should stay intentionally small while the project is young.
+
+Before inviting additional maintainers with write access, update branch protection to require at least one pull request review. Consider requiring code owner review for changes to production code, GitHub workflows, release automation, JSON output contracts, and CLI user-facing behavior.

@@ -57,7 +57,7 @@ Runs on:
 
 The workflow posts the standard thank-you message from `.github/contributor-thanks.md`. It uses a hidden marker to avoid duplicate comments if the workflow is re-run.
 
-For pull requests from forks, the workflow uses `pull_request_target` without checking out or executing contributor code. It only reads the base repository template and writes a comment.
+For pull requests from forks, the workflow uses `pull_request_target` without checking out or executing contributor code. It reads `.github/contributor-thanks.md` from the base repository through the GitHub API and writes a comment.
 
 ## Release Workflow
 
@@ -114,3 +114,5 @@ Recommended required status:
 Keep security checks visible, but avoid making scheduled security tooling a blocker for focused contributor PRs until the project has more maintainers.
 
 Only users with maintainer-level repository permissions should merge pull requests. See [MAINTAINERS.md](../MAINTAINERS.md).
+
+Before adding more maintainers, require at least one pull request review and consider requiring code owner review for changes that touch production code, workflows, release automation, or public output contracts.
