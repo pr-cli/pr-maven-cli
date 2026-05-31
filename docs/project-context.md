@@ -94,6 +94,8 @@ Stage 3 may add optional provider adapters, but local Maven report parsing must 
 - Low setup cost for contributors.
 - Network access stays optional.
 
+`Deterministic before agentic` means the core product starts with parsing plus rules over Maven artifacts. It does not depend on LLM output, loose heuristics, random ordering, network access, or subjective interpretation. For the full principle, read [Deterministic Context](deterministic-context.md).
+
 ## Domain Model
 
 The public contract is centered on:
