@@ -2,6 +2,8 @@
 
 This roadmap is intentionally conservative. Dates include safety margin for review, contributor onboarding, documentation, and stabilization.
 
+For a simplified visual view of the stages, backlog lanes, and dependency order, see [Project visual map](docs/project-visual-map.md).
+
 Current production baseline: Maven 3.9.x, documented against Maven 3.9.16. Apache Maven currently lists Maven 3.9.16 as the recommended release and Maven 4.x as a preview line that is not safe for production use: <https://maven.apache.org/download.cgi>.
 
 ## Stage 1 - Production-Usable Local MVP

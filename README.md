@@ -34,6 +34,7 @@ This is useful for:
 
 - [Manifesto](MANIFESTO.md)
 - [Project context](docs/project-context.md)
+- [Project visual map](docs/project-visual-map.md)
 - [Roadmap](ROADMAP.md)
 - [Final testable delivery](docs/final-testable-delivery.md)
 - [MVP acceptance checklist](docs/mvp-acceptance.md)
