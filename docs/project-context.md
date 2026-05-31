@@ -140,6 +140,8 @@ PR Maven CLI emits:
 
 Text output should stay concise and actionable. JSON output should remain compatible with consumers that ignore unknown future fields.
 
+For the terminology behind deterministic text and deterministic JSON, read [Deterministic Output](deterministic-output.md).
+
 ## Validation Requirements
 
 Before a change is considered production-safe, the project should validate:

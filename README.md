@@ -42,6 +42,7 @@ This is useful for:
 - [Implementation status](docs/implementation-status.md)
 - [Installation](docs/installation.md)
 - [Usage guide](docs/usage.md)
+- [Deterministic output](docs/deterministic-output.md)
 - [JSON contract](docs/json-contract.md)
 - [Confidence model](docs/confidence.md)
 - [JSON schema](schema/prmaven-report.schema.json)

@@ -2,6 +2,8 @@
 
 PR Maven CLI emits JSON for CI systems, bots, and coding agents that need deterministic Maven failure context.
 
+For the meaning of deterministic JSON output and how it relates to human-readable text output, read [Deterministic Output](deterministic-output.md).
+
 Run:
 
 ```bash
