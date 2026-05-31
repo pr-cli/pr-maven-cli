@@ -118,4 +118,4 @@ Only users with maintainer-level repository permissions should merge pull reques
 
 Delete pull request head branches after merge so the repository does not accumulate stale contribution branches.
 
-Before adding more maintainers, require at least one pull request review and consider requiring code owner review for changes that touch production code, workflows, release automation, or public output contracts.
+The default branch should require at least one approving pull request review and a code owner review. While `@Will-thom` is the only maintainer and code owner, a documented founder bypass may remain enabled to avoid deadlocking founder-authored maintenance PRs.
