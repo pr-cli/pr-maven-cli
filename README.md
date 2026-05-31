@@ -33,7 +33,10 @@ This is useful for:
 ## Project Documents
 
 - [Manifesto](MANIFESTO.md)
+- [Project context](docs/project-context.md)
 - [Roadmap](ROADMAP.md)
+- [Final testable delivery](docs/final-testable-delivery.md)
+- [Implementation status](docs/implementation-status.md)
 - [Installation](docs/installation.md)
 - [Usage guide](docs/usage.md)
 - [JSON contract](docs/json-contract.md)
