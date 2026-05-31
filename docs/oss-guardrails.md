@@ -20,6 +20,7 @@ The project follows a conservative OSS posture inspired by mature Maven ecosyste
 - Pull request head branches are deleted after merge.
 - Conversation resolution is required before merge.
 - Repository workflow token permissions default to `contents: read`.
+- `All CI checks` includes a public metadata guard that blocks branch names, pull request titles, and commit messages containing coding agent or tool names.
 - Secret scanning, secret scanning push protection, and Dependabot security updates are enabled for the public repository.
 - Core analysis must not require network access, provider tokens, telemetry, AI services, or hosted APIs.
 
@@ -29,6 +30,7 @@ The project follows a conservative OSS posture inspired by mature Maven ecosyste
 - Keep issue bodies explicit about dependencies and acceptance criteria.
 - Keep `status: blocked` issues blocked until their dependency is closed or intentionally waived.
 - Do not merge contributor PRs without a relevant type label, area label, and stage label when the PR belongs to the roadmap.
+- Keep public metadata product-focused: branch names, pull request titles, commit messages, and merge messages should not include coding agent or tool names.
 - Prefer fixture-based tests for parser and CLI behavior.
 
 ## Workflow Safety
@@ -38,6 +40,7 @@ The project follows a conservative OSS posture inspired by mature Maven ecosyste
 - Comment-only automations may read base-repository templates and write comments.
 - Release package jobs may receive `id-token: write` and `attestations: write` only to generate GitHub artifact and SBOM attestations.
 - Release publishing jobs may receive `contents: write`; other jobs should stay read-only unless a specific need is documented.
+- Required CI should keep the public metadata guard in the aggregate `All CI checks` gate.
 
 ## Local-First Product Guardrail
 

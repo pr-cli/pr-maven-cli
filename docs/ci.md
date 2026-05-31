@@ -17,6 +17,7 @@ Runs on:
 
 Jobs:
 
+- `Agent name guard`: validates that branch names, pull request titles, and commit messages do not include coding agent or tool names.
 - `Quality gate`: `gofmt`, `go vet`, and unit tests.
 - `Go tests`: Linux, Windows, macOS, Go 1.22.x, and current stable Go.
 - `Race detector`: `go test -race ./...` on Linux.
@@ -117,6 +118,8 @@ The `main` branch should be protected.
 Recommended required status:
 
 - `All CI checks`
+
+`All CI checks` includes the public metadata guard so pull requests cannot merge when branch names, pull request titles, or commit messages include blocked coding agent or tool names.
 
 Keep security checks visible, but avoid making scheduled security tooling a blocker for focused contributor PRs until the project has more maintainers.
 

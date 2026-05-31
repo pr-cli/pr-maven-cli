@@ -47,6 +47,7 @@ Every new issue and pull request receives the standard contributor thank-you mes
 - Do not add telemetry.
 - Do not require external services for core tests.
 - Do not commit generated binaries, local caches, or private CI logs.
+- Keep branch names, pull request titles, commit messages, and merge messages focused on the product change. Do not include coding agent or tool names such as `codex`, `claude`, `gemini`, `copilot`, `cursor`, `windsurf`, `aider`, or `devin`.
 
 ## Good First Contributions
 
@@ -79,6 +80,7 @@ Expected standard:
 - Tests are included.
 - The diff is scoped.
 - The contribution does not perform unrelated refactors.
+- Public metadata describes the product change, not the automation used to produce it.
 
 ## Maintainers
 
