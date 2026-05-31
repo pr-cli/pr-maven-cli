@@ -11,6 +11,7 @@ Explain what changed and why.
 - [ ] Documentation updated when contributor or user behavior changes
 - [ ] No GitHub, GitLab, AI provider, telemetry, or external-service dependency was added to core analysis
 - [ ] JSON compatibility was preserved or the compatibility impact is explained
+- [ ] Branch name, PR title, and commit messages avoid coding agent or tool names
 
 ## Scope
 
