@@ -43,6 +43,7 @@ This is useful for:
 - [Installation](docs/installation.md)
 - [Usage guide](docs/usage.md)
 - [JSON contract](docs/json-contract.md)
+- [Confidence model](docs/confidence.md)
 - [JSON schema](schema/prmaven-report.schema.json)
 - [Examples](examples/README.md)
 - [Fixture notes](docs/fixtures.md)
