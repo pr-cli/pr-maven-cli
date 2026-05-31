@@ -218,9 +218,256 @@ Acceptance criteria:
 - Explain `good first issue`, `help wanted`, and `agent-friendly`.
 - Include examples of well-scoped issues.
 
+## Stage 2.1 - MVP Hardening and Validation
+
+Stage 2.1 is a validation lane between the implemented Stage 2 work and the optional provider-context work planned for Stage 3.
+
+Root plan:
+
+- #65 - `[Stage 2.1] MVP hardening plan`
+
+Suggested merge order:
+
+1. #66 - Add final MVP acceptance checklist.
+2. Ready validation work: #70, #71, #69, #72, and #78.
+3. Work unblocked by #66: #67, #68, #75, and #77.
+4. Work unblocked by #70 and #68: #73, #76, #74, and #80.
+5. Stage 3 gate: #79, after #66, #68, #71, and #75.
+
+### 21. Add final MVP acceptance checklist
+
+Issue: #66
+
+Labels: `stage: 2.1`, `area: docs`, `area: validation`, `good first contribution`, `oss first friendly`, `agent-friendly`, `status: ready`
+
+Acceptance criteria:
+
+- Add a checklist document or section that references `docs/final-testable-delivery.md`.
+- Include functional, validation, safety, documentation, and release-readiness checks.
+- Link the checklist from `README.md` or `docs/testing.md`.
+- `go test ./...` passes.
+
+### 22. Add documentation command smoke tests
+
+Issue: #67
+
+Depends on: #66.
+
+Labels: `stage: 2.1`, `area: docs`, `area: test`, `area: validation`, `help wanted`, `need help`, `agent-friendly`, `status: blocked`
+
+Acceptance criteria:
+
+- Identify safe local commands to smoke test.
+- Add a focused test or script for representative documented commands.
+- Avoid publish, push, tag, or provider-token commands.
+- Document how maintainers should update the smoke test.
+- `go test ./...` passes.
+
+### 23. Add end-to-end CLI acceptance suite
+
+Issue: #68
+
+Depends on: #66.
+
+Labels: `stage: 2.1`, `area: test`, `area: validation`, `help wanted`, `need help`, `agent-friendly`, `status: blocked`
+
+Acceptance criteria:
+
+- Exercise `demo/multi-module-failure` through the CLI.
+- Exercise `demo/no-failure` through the CLI.
+- Verify documented exit codes.
+- Verify JSON output is parseable.
+- Keep tests local-first and provider-agnostic.
+- `go test ./...` passes.
+
+### 24. Add golden JSON output snapshots
+
+Issue: #69
+
+Depends on: #9 (completed).
+
+Labels: `stage: 2.1`, `area: test`, `area: validation`, `good first contribution`, `oss first friendly`, `agent-friendly`, `status: ready`
+
+Acceptance criteria:
+
+- Add a golden JSON fixture for `demo/multi-module-failure`.
+- Add a golden JSON fixture for `demo/no-failure`.
+- Normalize machine-specific fields such as `projectRoot` before comparison.
+- Document how to update snapshots intentionally.
+- `go test ./...` passes.
+
+### 25. Add fixture integrity validation
+
+Issue: #70
+
+Labels: `stage: 2.1`, `area: test`, `area: validation`, `good first contribution`, `oss first friendly`, `agent-friendly`, `status: ready`
+
+Acceptance criteria:
+
+- Validate that expected fixture report and log files exist.
+- Validate that demo fixtures remain deterministic and self-contained.
+- Validate intentionally committed `target` report files.
+- Produce clear failures when a fixture is incomplete.
+- Document the validation command.
+- `go test ./...` passes.
+
+### 26. Add JSON schema validation to CI
+
+Issue: #71
+
+Depends on: #9 (completed).
+
+Labels: `stage: 2.1`, `area: ci`, `area: validation`, `help wanted`, `need help`, `status: ready`
+
+Acceptance criteria:
+
+- Generate JSON from a demo fixture during validation.
+- Validate the generated JSON against the report schema.
+- Keep the validation dependency-light for GitHub Actions.
+- Document the validation command in `docs/testing.md` or `docs/ci.md`.
+- `go test ./...` passes.
+
+### 27. Add no-failure regression matrix for output modes
+
+Issue: #72
+
+Depends on: #13 (completed).
+
+Labels: `stage: 2.1`, `area: test`, `area: validation`, `good first contribution`, `oss first friendly`, `agent-friendly`, `status: ready`
+
+Acceptance criteria:
+
+- Verify text no-failure output.
+- Verify JSON no-failure output has `findingCount: 0`.
+- Verify `-output` works with no findings.
+- Verify exit code `0` remains stable.
+- `go test ./...` passes.
+
+### 28. Run fixture integrity validation in CI
+
+Issue: #73
+
+Depends on: #70.
+
+Labels: `stage: 2.1`, `area: ci`, `area: validation`, `help wanted`, `need help`, `status: blocked`
+
+Acceptance criteria:
+
+- CI runs fixture integrity validation on pull requests.
+- CI output clearly identifies fixture validation failures.
+- `docs/ci.md` documents where this validation runs.
+- `go test ./...` passes.
+
+### 29. Add output file E2E matrix
+
+Issue: #74
+
+Depends on: #15 (completed), #68.
+
+Labels: `stage: 2.1`, `area: test`, `area: validation`, `help wanted`, `need help`, `agent-friendly`, `status: blocked`
+
+Acceptance criteria:
+
+- Verify text output can be written to a selected file.
+- Verify JSON output can be written to a selected file.
+- Verify stdout behavior when `-output` is absent.
+- Verify generated files are cleaned up in tests.
+- `go test ./...` passes.
+
+### 30. Add release readiness validation checklist
+
+Issue: #75
+
+Depends on: #66.
+
+Labels: `stage: 2.1`, `area: docs`, `area: validation`, `help wanted`, `need help`, `status: blocked`
+
+Acceptance criteria:
+
+- Add a release readiness checklist to `docs/release.md` or a linked document.
+- Include tests, CI, schema, examples, docs, and artifact expectations.
+- Keep the checklist suitable for v0.x releases.
+- Link to `docs/final-testable-delivery.md`.
+- `go test ./...` passes.
+
+### 31. Add module filter E2E matrix
+
+Issue: #76
+
+Depends on: #16 (completed), #68.
+
+Labels: `stage: 2.1`, `area: test`, `area: validation`, `help wanted`, `need help`, `agent-friendly`, `status: blocked`
+
+Acceptance criteria:
+
+- Verify filtering by module path.
+- Verify filtering by module artifact id.
+- Verify no-match behavior.
+- Verify JSON summary and findings reflect the filtered view.
+- `go test ./...` passes.
+
+### 32. Update PR template with MVP validation checklist
+
+Issue: #77
+
+Depends on: #66.
+
+Labels: `stage: 2.1`, `area: docs`, `area: validation`, `help wanted`, `need help`, `status: blocked`
+
+Acceptance criteria:
+
+- Add an MVP validation checklist section to `.github/PULL_REQUEST_TEMPLATE.md`.
+- Keep the checklist short and contributor-friendly.
+- Link to `docs/testing.md` or the acceptance checklist.
+- Do not require irrelevant checks for documentation-only PRs.
+
+### 33. Add issue dependency map to contributor backlog
+
+Issue: #78
+
+Labels: `stage: 2.1`, `area: docs`, `good first contribution`, `oss first friendly`, `agent-friendly`, `status: ready`
+
+Acceptance criteria:
+
+- Update `.github/backlog/ISSUES.md` with a Stage 2.1 section.
+- Include issue numbers, dependency notes, and suggested merge order.
+- Keep Stage 3 dependencies clear without over-constraining contributors.
+- Ensure every listed issue has labels.
+
+### 34. Define Stage 3 readiness gate
+
+Issue: #79
+
+Depends on: #66, #68, #71, #75.
+
+Labels: `stage: 2.1`, `area: architecture`, `area: validation`, `help wanted`, `need help`, `status: blocked`
+
+Acceptance criteria:
+
+- Add a short Stage 3 readiness note to `ROADMAP.md` or `docs/integrations.md`.
+- Define required validation gates before provider adapters land.
+- Clarify that network adapters remain optional.
+- Link relevant Stage 3 architecture issues.
+- `go test ./...` passes.
+
+### 35. Add no-network core analyzer regression guard
+
+Issue: #80
+
+Depends on: #68.
+
+Labels: `stage: 2.1`, `area: test`, `area: validation`, `help wanted`, `need help`, `agent-friendly`, `status: blocked`
+
+Acceptance criteria:
+
+- Add a test or validation that exercises core analysis without provider tokens.
+- Ensure GitHub/GitLab environment variables are not required for core tests.
+- Document the local-first/no-network expectation in `docs/testing.md` or `docs/permissions.md`.
+- `go test ./...` passes.
+
 ## Stage 3 - PR and CI Context Layer
 
-### 21. Design GitHub adapter interface
+### 36. Design GitHub adapter interface
 
 Labels: `stage: 3`, `area: architecture`, `help wanted`
 
@@ -230,7 +477,7 @@ Acceptance criteria:
 - Define interfaces for changed files and check runs.
 - Keep network behavior outside the core analyzer.
 
-### 22. Add GitHub changed files adapter
+### 37. Add GitHub changed files adapter
 
 Labels: `stage: 3`, `area: github`, `help wanted`
 
@@ -240,7 +487,7 @@ Acceptance criteria:
 - Use dependency injection so tests can run without GitHub.
 - Add fixture/mocked tests.
 
-### 23. Add GitHub check runs adapter
+### 38. Add GitHub check runs adapter
 
 Labels: `stage: 3`, `area: github`, `help wanted`
 
@@ -250,7 +497,7 @@ Acceptance criteria:
 - Avoid requiring tokens for local analyzer tests.
 - Add mock tests for success and failure states.
 
-### 24. Add PR-to-module relevance scoring
+### 39. Add PR-to-module relevance scoring
 
 Labels: `stage: 3`, `area: github`, `area: architecture`, `help wanted`
 
@@ -260,7 +507,7 @@ Acceptance criteria:
 - Emit relevance score or reasons.
 - Keep scoring explainable and deterministic.
 
-### 25. Design baseline comparison model
+### 40. Design baseline comparison model
 
 Labels: `stage: 3`, `area: architecture`, `help wanted`
 
@@ -270,7 +517,7 @@ Acceptance criteria:
 - Define required inputs and failure modes.
 - Avoid implementation until the model is reviewed.
 
-### 26. Implement confidence model v2
+### 41. Implement confidence model v2
 
 Labels: `stage: 3`, `area: architecture`, `help wanted`
 
@@ -280,7 +527,7 @@ Acceptance criteria:
 - Preserve confidence reasons in JSON.
 - Add tests for report-only and PR-context-backed findings.
 
-### 27. Add Markdown PR summary output
+### 42. Add Markdown PR summary output
 
 Labels: `stage: 3`, `area: cli`, `help wanted`, `agent-friendly`
 
@@ -290,7 +537,7 @@ Acceptance criteria:
 - Include findings and reproduction commands.
 - Keep output suitable for PR comments.
 
-### 28. Add `prmaven explain` command
+### 43. Add `prmaven explain` command
 
 Labels: `stage: 3`, `area: cli`, `help wanted`
 
@@ -300,7 +547,7 @@ Acceptance criteria:
 - Preserve `fails` and `why` behavior.
 - Add CLI tests.
 
-### 29. Add `prmaven ci` command
+### 44. Add `prmaven ci` command
 
 Labels: `stage: 3`, `area: cli`, `area: ci`, `help wanted`
 
@@ -310,7 +557,7 @@ Acceptance criteria:
 - Output JSON by default or document the chosen behavior.
 - Include examples for GitHub Actions.
 
-### 30. Investigate SARIF output
+### 45. Investigate SARIF output
 
 Labels: `stage: 3`, `area: ci`, `help wanted`
 
@@ -320,7 +567,7 @@ Acceptance criteria:
 - Map `Finding` fields to SARIF concepts.
 - Recommend whether SARIF belongs in the project.
 
-### 31. Investigate GitHub annotation output
+### 46. Investigate GitHub annotation output
 
 Labels: `stage: 3`, `area: ci`, `help wanted`
 
@@ -330,7 +577,7 @@ Acceptance criteria:
 - Include examples and limitations.
 - Recommend next implementation steps.
 
-### 32. Research GitLab merge request support
+### 47. Research GitLab merge request support
 
 Labels: `stage: 3`, `area: gitlab`, `help wanted`
 
@@ -340,7 +587,7 @@ Acceptance criteria:
 - Identify APIs needed for changed files and pipeline jobs.
 - Keep GitLab support optional.
 
-### 33. Add Maven 4 compatibility investigation
+### 48. Add Maven 4 compatibility investigation
 
 Labels: `stage: 3`, `area: maven`, `help wanted`
 
@@ -350,7 +597,7 @@ Acceptance criteria:
 - Add fixtures only when Maven 4 behavior is stable enough.
 - Do not declare production support prematurely.
 
-### 34. Add agent evidence bundle output
+### 49. Add agent evidence bundle output
 
 Labels: `stage: 3`, `area: agent`, `help wanted`
 
@@ -360,7 +607,7 @@ Acceptance criteria:
 - Include findings, commands, confidence reasons, and relevant files when available.
 - Avoid prompt-specific coupling.
 
-### 35. Add CI artifact directory option
+### 50. Add CI artifact directory option
 
 Labels: `stage: 3`, `area: cli`, `area: ci`, `help wanted`
 
@@ -370,7 +617,7 @@ Acceptance criteria:
 - Preserve module mapping behavior where possible.
 - Add tests with fixture artifact layout.
 
-### 36. Add privacy guide for CI logs
+### 51. Add privacy guide for CI logs
 
 Labels: `stage: 3`, `area: docs`, `good first issue`, `agent-friendly`
 
@@ -380,7 +627,7 @@ Acceptance criteria:
 - Explain what data should never be pasted publicly.
 - Link from `SECURITY.md` and `CONTRIBUTING.md`.
 
-### 37. Add GitHub Action usage example
+### 52. Add GitHub Action usage example
 
 Labels: `stage: 3`, `area: docs`, `area: ci`, `help wanted`
 
@@ -390,7 +637,7 @@ Acceptance criteria:
 - Show text and JSON output modes.
 - Avoid requiring a token for local report parsing.
 
-### 38. Add internal engineering platform integration guide
+### 53. Add internal engineering platform integration guide
 
 Labels: `stage: 3`, `area: docs`, `help wanted`
 
@@ -400,7 +647,7 @@ Acceptance criteria:
 - Include examples for local/self-hosted execution.
 - Explain privacy and no-telemetry behavior.
 
-### 39. Add package manager distribution research
+### 54. Add package manager distribution research
 
 Labels: `stage: 3`, `area: release`, `help wanted`
 
@@ -410,7 +657,7 @@ Acceptance criteria:
 - Recommend a first distribution path.
 - Keep release complexity proportional to project maturity.
 
-### 40. Add stable output compatibility policy
+### 55. Add stable output compatibility policy
 
 Labels: `stage: 3`, `area: docs`, `help wanted`
 
