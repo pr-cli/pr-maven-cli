@@ -234,6 +234,41 @@ Suggested merge order:
 4. Work unblocked by #70 and #68: #73, #76, #74, and #80.
 5. Stage 3 gate: #79, after #66, #68, #71, and #75.
 
+Additional ready documentation work:
+
+- #61 - Clarify deterministic text and JSON terminology.
+- #62 - Document deterministic context principles.
+
+### Documentation Polish Issues
+
+#### D1. Clarify deterministic text and JSON terminology
+
+Issue: #61
+
+Labels: `stage: 2.1`, `area: docs`, `good first contribution`, `oss first friendly`, `agent-friendly`, `status: ready`
+
+Acceptance criteria:
+
+- Explain `Deterministic Text`.
+- Explain `Deterministic JSON`.
+- Keep wording aligned with README, JSON contract, and product principles.
+- `go test ./...` passes.
+
+#### D2. Document deterministic context principles
+
+Issue: #62
+
+Related wording issue: #61.
+
+Labels: `stage: 2.1`, `area: architecture`, `area: docs`, `help wanted`, `need help`, `status: ready`
+
+Acceptance criteria:
+
+- Explain that deterministic output does not depend on an LLM, loose heuristics, random ordering, network access, or subjective interpretation.
+- Explain the product principle: parsing plus rules, one package manager, one failure model, one deterministic contract.
+- Link the explanation from `README.md`, `MANIFESTO.md`, or `docs/project-context.md` where it best fits.
+- `go test ./...` passes.
+
 ### 21. Add final MVP acceptance checklist
 
 Issue: #66
