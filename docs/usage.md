@@ -17,10 +17,14 @@ prmaven why -project .
 prmaven why -project . -format json
 prmaven why -project . -module payment-core
 prmaven why -project . -format json -output prmaven-report.json
+prmaven -h
+prmaven help
 prmaven version
 ```
 
 Stage 1 treats `fails` and `why` as equivalent analysis commands. The separate names leave room for future UX where `fails` lists failures and `why` adds richer causality evidence.
+
+Built-in help is available with `prmaven -h`, `prmaven --help`, `prmaven -help`, or `prmaven help`. It lists commands, flags, examples, and exit codes without requiring network access or extra dependencies.
 
 ## Flags
 
@@ -28,6 +32,7 @@ Stage 1 treats `fails` and `why` as equivalent analysis commands. The separate n
 - `-format`: output format. Supported values are `text` and `json`. Defaults to `text`.
 - `-module`: optional Maven module filter. Matches either a module path, such as `payment-core`, or a module artifactId. Limits emitted findings to matching modules.
 - `-output`: optional file path for the generated text or JSON report. When omitted, output is written to stdout.
+- `-h`, `-help`, `--help`: print built-in CLI help.
 
 When `-module` is set and no module matches, PR Maven CLI emits zero findings for that filtered view.
 
