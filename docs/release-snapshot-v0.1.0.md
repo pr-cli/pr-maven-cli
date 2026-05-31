@@ -170,6 +170,7 @@ CLI and automation:
 
 Use these files as the living source of truth after this snapshot:
 
+- [Project visual map](project-visual-map.md)
 - [Roadmap](../ROADMAP.md)
 - [Final testable delivery](final-testable-delivery.md)
 - [MVP acceptance checklist](mvp-acceptance.md)
