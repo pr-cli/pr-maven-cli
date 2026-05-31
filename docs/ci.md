@@ -90,7 +90,7 @@ The workflow defaults to `contents: read`. Package jobs receive `id-token: write
 
 Repository permission posture is documented in [permissions.md](permissions.md).
 
-For a reusable CI/CD baseline that can be adapted to other OSS projects, see [CI/CD Reference Template](../TEMPLATE_CI_REFERENCE.md).
+Reusable cross-project CI/CD templates are maintained outside this public repository so this document stays focused on the PR Maven CLI pipeline.
 
 ## Local Parity
 
