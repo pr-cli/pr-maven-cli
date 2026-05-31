@@ -8,7 +8,7 @@ import (
 	"path"
 	"strings"
 
-	"github.com/Will-thom/pr-maven-cli/pkg/prmaven"
+	"github.com/pr-cli/pr-maven-cli/pkg/prmaven"
 )
 
 var version = "dev"

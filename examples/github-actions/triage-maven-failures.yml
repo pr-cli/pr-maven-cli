@@ -29,7 +29,7 @@ jobs:
 
       - name: Install PR Maven CLI
         if: always()
-        run: go install github.com/Will-thom/pr-maven-cli/cmd/prmaven@latest
+        run: go install github.com/pr-cli/pr-maven-cli/cmd/prmaven@latest
 
       - name: Print Maven failure context
         if: always()

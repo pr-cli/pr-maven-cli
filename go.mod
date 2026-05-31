@@ -1,3 +1,3 @@
-module github.com/Will-thom/pr-maven-cli
+module github.com/pr-cli/pr-maven-cli
 
 go 1.22
