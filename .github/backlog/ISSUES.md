@@ -222,23 +222,25 @@ Acceptance criteria:
 
 Stage 2.1 is a validation lane between the implemented Stage 2 work and the optional provider-context work planned for Stage 3.
 
+Planning reference: [`docs/mvp-hardening-plan.md`](../../docs/mvp-hardening-plan.md).
+
 Root plan:
 
 - #65 - `[Stage 2.1] MVP hardening plan`
 
 Suggested merge order:
 
-1. #66 - Add final MVP acceptance checklist.
-2. Ready validation work: #70, #71, #69, #72, and #78.
-3. Work unblocked by #66: #67, #68, #75, and #77.
-4. Work unblocked by #70 and #68: #73, #76, #74, and #80.
-5. Stage 3 gate: #79, after #66, #68, #71, and #75.
+1. Root planning and deterministic-docs lane: #61, #62, and #65.
+2. Ready validation foundations: #70, #71, #69, and #72.
+3. Work unblocked by completed checklists and E2E coverage: #67, #74, #76, and #77.
+4. CI follow-up after fixture validation exists: #73 after #70.
+5. Stage 3 gate: #79, after #71 and the completed MVP/release checklist work.
 6. Stage 3 label unblock review: #102, after #79.
 
 Additional ready documentation work:
 
-- #61 - Clarify deterministic text and JSON terminology.
-- #62 - Document deterministic context principles.
+- #61 - Clarify deterministic text and JSON terminology. Completed.
+- #62 - Document deterministic context principles. Completed.
 
 Additional guardrail and release-planning work:
 
@@ -276,6 +278,22 @@ Acceptance criteria:
 - Link the explanation from `README.md`, `MANIFESTO.md`, or `docs/project-context.md` where it best fits.
 - `go test ./...` passes.
 
+#### D3. Document the MVP hardening plan
+
+Issue: #65
+
+Depends on: #61 and #62.
+
+Labels: `stage: 2.1`, `area: docs`, `area: validation`, `help wanted`, `need help`, `status: ready`
+
+Acceptance criteria:
+
+- Document Stage 2.1 as the hardening lane between local MVP work and Stage 3 provider context.
+- Include issue dependencies and suggested merge order.
+- Link the hardening plan from the README, roadmap, backlog, and visual project map.
+- Clarify that Stage 3 implementation-heavy work remains gated by MVP validation.
+- `go test ./...` passes.
+
 ### 21. Add final MVP acceptance checklist
 
 Issue: #66
@@ -295,7 +313,7 @@ Issue: #67
 
 Depends on: #66.
 
-Labels: `stage: 2.1`, `area: docs`, `area: test`, `area: validation`, `help wanted`, `need help`, `agent-friendly`, `status: blocked`
+Labels: `stage: 2.1`, `area: docs`, `area: test`, `area: validation`, `help wanted`, `need help`, `agent-friendly`, `status: ready`
 
 Acceptance criteria:
 
@@ -311,7 +329,7 @@ Issue: #68
 
 Depends on: #66.
 
-Labels: `stage: 2.1`, `area: test`, `area: validation`, `help wanted`, `need help`, `agent-friendly`, `status: blocked`
+Labels: `stage: 2.1`, `area: test`, `area: validation`, `help wanted`, `need help`, `agent-friendly`, `status: ready`
 
 Acceptance criteria:
 
@@ -406,7 +424,7 @@ Issue: #74
 
 Depends on: #15 (completed), #68.
 
-Labels: `stage: 2.1`, `area: test`, `area: validation`, `help wanted`, `need help`, `agent-friendly`, `status: blocked`
+Labels: `stage: 2.1`, `area: test`, `area: validation`, `help wanted`, `need help`, `agent-friendly`, `status: ready`
 
 Acceptance criteria:
 
@@ -422,7 +440,7 @@ Issue: #75
 
 Depends on: #66.
 
-Labels: `stage: 2.1`, `area: docs`, `area: validation`, `help wanted`, `need help`, `status: blocked`
+Labels: `stage: 2.1`, `area: docs`, `area: validation`, `help wanted`, `need help`, `status: ready`
 
 Acceptance criteria:
 
@@ -438,7 +456,7 @@ Issue: #76
 
 Depends on: #16 (completed), #68.
 
-Labels: `stage: 2.1`, `area: test`, `area: validation`, `help wanted`, `need help`, `agent-friendly`, `status: blocked`
+Labels: `stage: 2.1`, `area: test`, `area: validation`, `help wanted`, `need help`, `agent-friendly`, `status: ready`
 
 Acceptance criteria:
 
@@ -454,7 +472,7 @@ Issue: #77
 
 Depends on: #66.
 
-Labels: `stage: 2.1`, `area: docs`, `area: validation`, `help wanted`, `need help`, `status: blocked`
+Labels: `stage: 2.1`, `area: docs`, `area: validation`, `help wanted`, `need help`, `status: ready`
 
 Acceptance criteria:
 
@@ -498,7 +516,7 @@ Issue: #80
 
 Depends on: #68.
 
-Labels: `stage: 2.1`, `area: test`, `area: validation`, `help wanted`, `need help`, `agent-friendly`, `status: blocked`
+Labels: `stage: 2.1`, `area: test`, `area: validation`, `help wanted`, `need help`, `agent-friendly`, `status: ready`
 
 Acceptance criteria:
 

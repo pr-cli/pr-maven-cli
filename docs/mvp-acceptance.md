@@ -4,6 +4,8 @@ This checklist turns [Final Testable Delivery](final-testable-delivery.md) into 
 
 Use it before release tags, large validation changes, and Stage 3 provider-context work.
 
+For the Stage 2.1 issue order and dependency map, see the [MVP hardening plan](mvp-hardening-plan.md).
+
 ## Functional Acceptance
 
 - [ ] `prmaven fails -project demo/multi-module-failure` reports fixture-backed Maven findings.
