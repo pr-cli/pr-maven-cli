@@ -201,6 +201,7 @@ It does not currently fetch artifacts from CI providers, inspect remote pull req
 
 Near-term priorities:
 
+- follow the [MVP hardening plan](mvp-hardening-plan.md) before implementation-heavy Stage 3 work;
 - keep parser fixtures easy for contributors to extend;
 - document fixture contribution rules;
 - harden output compatibility expectations;

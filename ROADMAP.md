@@ -89,6 +89,35 @@ Acceptance criteria:
 
 Expected confidence: high.
 
+## Stage 2.1 - MVP Hardening and Validation
+
+Target window: June 1, 2026 to July 19, 2026.
+
+Target release lane: `v0.2.x` hardening.
+
+Goal: keep the local MVP stable before implementation-heavy Stage 3 work by strengthening validation, fixtures, CI checks, release readiness, and contributor routing.
+
+Detailed plan: [MVP hardening plan](docs/mvp-hardening-plan.md).
+
+Planned work:
+
+- Maintain the MVP acceptance checklist as the gate for local production usability.
+- Add fixture integrity validation and golden JSON snapshots.
+- Add JSON schema validation to CI.
+- Expand no-failure, module-filter, output-file, and documentation-command test coverage.
+- Keep no-network analyzer behavior guarded by tests and documentation.
+- Keep Stage 3 provider-context implementation blocked until the readiness gate is closed.
+- Review Stage 3 blocked labels after the readiness gate.
+
+Acceptance criteria:
+
+- Stage 2.1 child issues have explicit dependencies.
+- Every child issue has stage, area, contributor-fit, and status labels.
+- The backlog and visual map show the hardening lane.
+- Stage 3 implementation work remains gated by MVP validation.
+
+Expected confidence: high.
+
 ## Stage 3 - PR and CI Context Layer
 
 Target window: July 20, 2026 to September 6, 2026.
@@ -117,6 +146,7 @@ Acceptance criteria:
 - Network adapters are optional.
 - Local report parsing remains usable without GitHub or GitLab tokens.
 - PR context is additive evidence, not a replacement for Maven evidence.
+- Implementation-heavy provider work starts after the Stage 2.1 readiness gate and blocked-label review.
 - CI examples work with public repositories and private CI artifacts.
 - Maven 4 support is not declared production-ready until validated against stable Maven 4 behavior.
 

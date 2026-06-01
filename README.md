@@ -38,6 +38,7 @@ This is useful for:
 - [Roadmap](ROADMAP.md)
 - [Final testable delivery](docs/final-testable-delivery.md)
 - [MVP acceptance checklist](docs/mvp-acceptance.md)
+- [MVP hardening plan](docs/mvp-hardening-plan.md)
 - [v0.1.0 release snapshot](docs/release-snapshot-v0.1.0.md)
 - [Implementation status](docs/implementation-status.md)
 - [Installation](docs/installation.md)

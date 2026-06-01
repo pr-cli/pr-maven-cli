@@ -2,13 +2,13 @@
 
 This document gives maintainers and contributors a quick visual view of what is done, what comes next, and how the backlog is organized.
 
-Use it together with [ROADMAP.md](../ROADMAP.md), the [v0.1.0 release snapshot](release-snapshot-v0.1.0.md), and the GitHub issue labels.
+Use it together with [ROADMAP.md](../ROADMAP.md), the [MVP hardening plan](mvp-hardening-plan.md), the [v0.1.0 release snapshot](release-snapshot-v0.1.0.md), and the GitHub issue labels.
 
 ## One-Screen Status
 
 ```mermaid
 flowchart LR
-    S1["Stage 1\nv0.1.0 shipped\nLocal Maven report MVP"] --> S2["Stage 2 remaining\nDocs and ergonomics\n#17 #18 #19 #20"]
+    S1["Stage 1\nv0.1.0 shipped\nLocal Maven report MVP"] --> S2["Stage 2\nMaven signal and contributor foundation"]
     S2 --> S21["Stage 2.1\nMVP hardening\nValidation and readiness"]
     S21 --> GATE["Stage 3 readiness gate\n#79 #80 #102"]
     GATE --> S3PLAN["Stage 3 planning\nRelease acceptance and dependency map\n#100, #101 shipped"]
@@ -20,7 +20,7 @@ flowchart LR
 Current interpretation:
 
 - Stage 1 is shipped as `v0.1.0`.
-- Stage 2 has a small set of ready documentation and CLI ergonomics issues left.
+- Stage 2 Maven signal and contributor foundations are in place.
 - Stage 2.1 is the hardening lane before broad Stage 3 work.
 - Stage 3 is well mapped, but implementation-heavy issues should wait for readiness gates and design contracts.
 
@@ -49,8 +49,8 @@ Important shipped properties:
 
 ```mermaid
 flowchart TD
-    L1["Stage 2 ready lane\nFinish remaining docs and ergonomics\n#17 #18 #19 #20"]
-    L2["Stage 2.1 docs lane\nDeterministic terminology and context\n#61 #62 #65"]
+    L1["Stage 2 foundation\nMaven signals, docs, and ergonomics"]
+    L2["Stage 2.1 docs lane\nDeterministic terminology, context, and hardening plan\n#61 #62 #65"]
     L3["Stage 2.1 validation fixtures\nGolden JSON and fixture integrity\n#69 #70 #72"]
     L4["Stage 2.1 CI and E2E\nSchema validation, smoke tests, output/module matrices\n#67 #68 #71 #73 #74 #76"]
     L5["Stage 2.1 gates\nPR checklist, Stage 3 readiness, no-network guard, label review\n#77 #79 #80 #102"]
@@ -65,8 +65,8 @@ flowchart TD
 
 Recommended maintainer order:
 
-1. Finish Stage 2 ready issues.
-2. Finish Stage 2.1 documentation and deterministic-context issues.
+1. Keep Stage 2 contributor and Maven signal docs aligned with implementation.
+2. Finish Stage 2.1 documentation and hardening-plan issues.
 3. Add fixture and JSON validation.
 4. Move stable validation into CI.
 5. Complete the Stage 3 readiness gate.
@@ -166,11 +166,11 @@ The shortest practical path from now to healthy Stage 3 execution is:
 
 ```mermaid
 flowchart LR
-    A["Close #17-#20"] --> B["Close #61 #62 #65"]
+    A["Stage 2 foundation aligned"] --> B["Close #65"]
     B --> C["Close #69 #70 #72"]
     C --> D["Close #71 #73"]
     D --> E["Close #67 #68 #74 #76"]
-    E --> F["Close #77 #79 #80 #102"]
+    E --> F["Close #77 #79 #102\nKeep #80 guard green"]
     F --> G["Close #100 and keep #101 current"]
     G --> H["Unblock early Stage 3 design issues"]
 ```
@@ -182,6 +182,7 @@ After that, Stage 3 implementation can begin with much lower ambiguity.
 This document is a navigation aid. The source of truth remains:
 
 - [Roadmap](../ROADMAP.md)
+- [MVP hardening plan](mvp-hardening-plan.md)
 - [v0.1.0 release snapshot](release-snapshot-v0.1.0.md)
 - [MVP acceptance checklist](mvp-acceptance.md)
 - [Implementation status](implementation-status.md)
