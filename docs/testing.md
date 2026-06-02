@@ -125,7 +125,15 @@ Golden files live under:
 pkg/prmaven/testdata/golden
 ```
 
-They protect human-readable output from accidental changes. When output changes intentionally, update the golden file in the same PR and explain the reason.
+They protect human-readable text output and machine-readable JSON output from accidental changes.
+
+Run the focused golden snapshot validation:
+
+```bash
+go test ./pkg/prmaven -run TestWrite.*GoldenFiles -v
+```
+
+When output changes intentionally, update the affected golden file in the same PR and explain the reason. JSON snapshots must normalize `projectRoot` to `<PROJECT_ROOT>/demo/...` so the files remain stable across machines and CI workers.
 
 ## CI
 

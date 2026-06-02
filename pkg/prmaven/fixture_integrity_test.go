@@ -47,7 +47,9 @@ func TestFixtureIntegrity(t *testing.T) {
 			description: "nested Surefire report",
 		},
 		{path: "testdata/golden/multi-module-failure.txt", description: "multi-module text golden file"},
+		{path: "testdata/golden/multi-module-failure.json", description: "multi-module JSON golden file"},
 		{path: "testdata/golden/no-failure.txt", description: "no-failure text golden file"},
+		{path: "testdata/golden/no-failure.json", description: "no-failure JSON golden file"},
 	}
 
 	for _, file := range expectedFixtureFiles {
