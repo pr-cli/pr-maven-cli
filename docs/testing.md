@@ -43,6 +43,12 @@ make coverage-check
 make ci
 ```
 
+Run the focused JSON schema validation:
+
+```bash
+go test ./pkg/prmaven -run TestGeneratedJSONReportsValidateAgainstSchema -v
+```
+
 ## Test Layers
 
 ### Library Tests
@@ -64,6 +70,7 @@ Coverage includes:
 - slash-separated path normalization for JSON output;
 - reproduction command generation;
 - JSON output contract;
+- generated demo JSON validation against `schema/prmaven-report.schema.json`;
 - text output snapshots;
 - missing project error behavior.
 
