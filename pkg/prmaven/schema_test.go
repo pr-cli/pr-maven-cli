@@ -1,7 +1,10 @@
 package prmaven
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
+	"math"
 	"os"
 	"reflect"
 	"strings"
@@ -9,15 +12,7 @@ import (
 )
 
 func TestReportSchemaTracksJSONContractFields(t *testing.T) {
-	data, err := os.ReadFile("../../schema/prmaven-report.schema.json")
-	if err != nil {
-		t.Fatal(err)
-	}
-
-	var schema map[string]any
-	if err := json.Unmarshal(data, &schema); err != nil {
-		t.Fatal(err)
-	}
+	schema := loadReportSchema(t)
 
 	assertSchemaProperties(t, schema, jsonFields(reflect.TypeOf(Report{})), "properties")
 	assertSchemaRequired(t, schema, requiredJSONFields(reflect.TypeOf(Report{})), "required")
@@ -28,6 +23,54 @@ func TestReportSchemaTracksJSONContractFields(t *testing.T) {
 	assertSchemaRequired(t, defs, requiredJSONFields(reflect.TypeOf(Module{})), "module.required")
 	assertSchemaProperties(t, defs, jsonFields(reflect.TypeOf(Finding{})), "finding.properties")
 	assertSchemaRequired(t, defs, requiredJSONFields(reflect.TypeOf(Finding{})), "finding.required")
+}
+
+func TestGeneratedJSONReportsValidateAgainstSchema(t *testing.T) {
+	schema := loadReportSchema(t)
+
+	tests := []struct {
+		name       string
+		projectDir string
+	}{
+		{name: "multi-module failure demo", projectDir: "../../demo/multi-module-failure"},
+		{name: "no-failure demo", projectDir: "../../demo/no-failure"},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			report, err := Analyze(Options{ProjectDir: tt.projectDir})
+			if err != nil {
+				t.Fatal(err)
+			}
+
+			var output bytes.Buffer
+			if err := WriteJSON(&output, report); err != nil {
+				t.Fatal(err)
+			}
+
+			var generated any
+			if err := json.Unmarshal(output.Bytes(), &generated); err != nil {
+				t.Fatalf("generated JSON is not parseable: %v", err)
+			}
+
+			validateSchemaValue(t, schema, schema, generated, "$")
+		})
+	}
+}
+
+func loadReportSchema(t *testing.T) map[string]any {
+	t.Helper()
+
+	data, err := os.ReadFile("../../schema/prmaven-report.schema.json")
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	var schema map[string]any
+	if err := json.Unmarshal(data, &schema); err != nil {
+		t.Fatal(err)
+	}
+	return schema
 }
 
 func assertSchemaProperties(t *testing.T, schema map[string]any, expected []string, path string) {
@@ -136,4 +179,183 @@ func jsonFieldName(field reflect.StructField) string {
 		return ""
 	}
 	return strings.Split(tag, ",")[0]
+}
+
+func validateSchemaValue(t *testing.T, root map[string]any, schema map[string]any, value any, path string) {
+	t.Helper()
+
+	if ref, ok := schema["$ref"].(string); ok {
+		validateSchemaValue(t, root, resolveSchemaRef(t, root, ref), value, path)
+		return
+	}
+
+	if typ, ok := schema["type"].(string); ok {
+		validateSchemaType(t, typ, value, path)
+	}
+
+	if enumValues, ok := schema["enum"].([]any); ok {
+		validateSchemaEnum(t, enumValues, value, path)
+	}
+
+	switch schema["type"] {
+	case "object":
+		validateSchemaObject(t, root, schema, value, path)
+	case "array":
+		validateSchemaArray(t, root, schema, value, path)
+	case "integer":
+		validateSchemaMinimum(t, schema, value, path)
+	}
+}
+
+func validateSchemaType(t *testing.T, typ string, value any, path string) {
+	t.Helper()
+
+	ok := false
+	switch typ {
+	case "object":
+		_, ok = value.(map[string]any)
+	case "array":
+		_, ok = value.([]any)
+	case "string":
+		_, ok = value.(string)
+	case "integer":
+		number, isNumber := value.(float64)
+		ok = isNumber && number == math.Trunc(number)
+	default:
+		t.Fatalf("%s uses unsupported schema type %q in test validator", path, typ)
+	}
+	if !ok {
+		t.Fatalf("%s is %T, want schema type %q", path, value, typ)
+	}
+}
+
+func validateSchemaEnum(t *testing.T, enumValues []any, value any, path string) {
+	t.Helper()
+
+	for _, enumValue := range enumValues {
+		if enumValue == value {
+			return
+		}
+	}
+	t.Fatalf("%s value %q is not allowed by enum %v", path, value, enumValues)
+}
+
+func validateSchemaObject(t *testing.T, root map[string]any, schema map[string]any, value any, path string) {
+	t.Helper()
+
+	object, ok := value.(map[string]any)
+	if !ok {
+		t.Fatalf("%s is %T, want object", path, value)
+	}
+
+	for _, name := range schemaStringArray(t, schema, "required", path) {
+		if _, ok := object[name]; !ok {
+			t.Fatalf("%s missing required property %q", path, name)
+		}
+	}
+
+	propertiesValue, ok := schema["properties"]
+	if !ok {
+		return
+	}
+	properties, ok := propertiesValue.(map[string]any)
+	if !ok {
+		t.Fatalf("%s.properties is %T, want object", path, propertiesValue)
+	}
+
+	for name, childSchemaValue := range properties {
+		childValue, ok := object[name]
+		if !ok {
+			continue
+		}
+		childSchema, ok := childSchemaValue.(map[string]any)
+		if !ok {
+			t.Fatalf("%s.properties.%s is %T, want object", path, name, childSchemaValue)
+		}
+		validateSchemaValue(t, root, childSchema, childValue, path+"."+name)
+	}
+}
+
+func validateSchemaArray(t *testing.T, root map[string]any, schema map[string]any, value any, path string) {
+	t.Helper()
+
+	values, ok := value.([]any)
+	if !ok {
+		t.Fatalf("%s is %T, want array", path, value)
+	}
+
+	itemsValue, ok := schema["items"]
+	if !ok {
+		return
+	}
+	itemsSchema, ok := itemsValue.(map[string]any)
+	if !ok {
+		t.Fatalf("%s.items is %T, want object", path, itemsValue)
+	}
+
+	for i, childValue := range values {
+		validateSchemaValue(t, root, itemsSchema, childValue, fmt.Sprintf("%s[%d]", path, i))
+	}
+}
+
+func validateSchemaMinimum(t *testing.T, schema map[string]any, value any, path string) {
+	t.Helper()
+
+	minimum, ok := schema["minimum"].(float64)
+	if !ok {
+		return
+	}
+	number, ok := value.(float64)
+	if !ok {
+		t.Fatalf("%s is %T, want number", path, value)
+	}
+	if number < minimum {
+		t.Fatalf("%s value %v is below schema minimum %v", path, number, minimum)
+	}
+}
+
+func resolveSchemaRef(t *testing.T, root map[string]any, ref string) map[string]any {
+	t.Helper()
+
+	if !strings.HasPrefix(ref, "#/") {
+		t.Fatalf("unsupported schema ref %q", ref)
+	}
+	current := any(root)
+	for _, part := range strings.Split(strings.TrimPrefix(ref, "#/"), "/") {
+		object, ok := current.(map[string]any)
+		if !ok {
+			t.Fatalf("schema ref %q parent is %T, want object", ref, current)
+		}
+		current, ok = object[part]
+		if !ok {
+			t.Fatalf("schema ref %q missing part %q", ref, part)
+		}
+	}
+	object, ok := current.(map[string]any)
+	if !ok {
+		t.Fatalf("schema ref %q resolves to %T, want object", ref, current)
+	}
+	return object
+}
+
+func schemaStringArray(t *testing.T, schema map[string]any, key, path string) []string {
+	t.Helper()
+
+	value, ok := schema[key]
+	if !ok {
+		return nil
+	}
+	values, ok := value.([]any)
+	if !ok {
+		t.Fatalf("%s.%s is %T, want array", path, key, value)
+	}
+	result := make([]string, 0, len(values))
+	for _, item := range values {
+		name, ok := item.(string)
+		if !ok {
+			t.Fatalf("%s.%s contains %T, want string", path, key, item)
+		}
+		result = append(result, name)
+	}
+	return result
 }

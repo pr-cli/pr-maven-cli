@@ -177,7 +177,7 @@ func Analyze(options Options) (Report, error) {
 		return Report{}, err
 	}
 
-	var findings []Finding
+	findings := make([]Finding, 0)
 	for _, reportFile := range reportFiles {
 		reportFindings, err := parseReport(absRoot, moduleByPath, reportFile)
 		if err != nil {
