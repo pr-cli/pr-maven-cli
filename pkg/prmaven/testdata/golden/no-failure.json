@@ -1,0 +1,21 @@
+{
+  "projectRoot": "<PROJECT_ROOT>/demo/no-failure",
+  "summary": {
+    "moduleCount": 2,
+    "reportCount": 1,
+    "findingCount": 0
+  },
+  "modules": [
+    {
+      "name": "no-failure",
+      "path": ".",
+      "pom": "pom.xml"
+    },
+    {
+      "name": "inventory-core",
+      "path": "inventory-core",
+      "pom": "inventory-core/pom.xml"
+    }
+  ],
+  "findings": []
+}

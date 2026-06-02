@@ -1,0 +1,71 @@
+{
+  "projectRoot": "<PROJECT_ROOT>/demo/multi-module-failure",
+  "summary": {
+    "moduleCount": 3,
+    "reportCount": 2,
+    "findingCount": 2
+  },
+  "modules": [
+    {
+      "name": "multi-module-failure",
+      "path": ".",
+      "pom": "pom.xml"
+    },
+    {
+      "name": "payment-api",
+      "path": "payment-api",
+      "pom": "payment-api/pom.xml"
+    },
+    {
+      "name": "payment-core",
+      "path": "payment-core",
+      "pom": "payment-core/pom.xml"
+    }
+  ],
+  "findings": [
+    {
+      "id": "payment-api-paymentapiit-shouldexposepaymentsummary-error",
+      "module": "payment-api",
+      "modulePath": "payment-api",
+      "reportPath": "payment-api/target/failsafe-reports/TEST-dev.prmaven.demo.PaymentApiIT.xml",
+      "reportKind": "failsafe",
+      "mavenPlugin": "maven-failsafe-plugin",
+      "mavenPhase": "verify",
+      "testClass": "dev.prmaven.demo.PaymentApiIT",
+      "testName": "shouldExposePaymentSummary",
+      "failureKind": "error",
+      "failureType": "java.net.ConnectException",
+      "message": "java.net.ConnectException: connection refused",
+      "reproduceCommand": "mvn -pl payment-api -am -Dit.test=PaymentApiIT verify",
+      "confidence": "high",
+      "confidenceReasons": [
+        "failure was found in a Maven Failsafe JUnit XML report",
+        "report path maps to Maven module payment-api",
+        "reproduction command targets test class PaymentApiIT"
+      ],
+      "sourceReportFormat": "junit-xml"
+    },
+    {
+      "id": "payment-core-paymentroundingtest-shouldrejectinvalidscale-failure",
+      "module": "payment-core",
+      "modulePath": "payment-core",
+      "reportPath": "payment-core/target/surefire-reports/TEST-dev.prmaven.demo.PaymentRoundingTest.xml",
+      "reportKind": "surefire",
+      "mavenPlugin": "maven-surefire-plugin",
+      "mavenPhase": "test",
+      "testClass": "dev.prmaven.demo.PaymentRoundingTest",
+      "testName": "shouldRejectInvalidScale",
+      "failureKind": "failure",
+      "failureType": "org.opentest4j.AssertionFailedError",
+      "message": "expected:\u003c2.50\u003e but was:\u003c2.49\u003e",
+      "reproduceCommand": "mvn -pl payment-core -am -Dtest=PaymentRoundingTest test",
+      "confidence": "high",
+      "confidenceReasons": [
+        "failure was found in a Maven Surefire JUnit XML report",
+        "report path maps to Maven module payment-core",
+        "reproduction command targets test class PaymentRoundingTest"
+      ],
+      "sourceReportFormat": "junit-xml"
+    }
+  ]
+}

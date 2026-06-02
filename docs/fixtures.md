@@ -18,7 +18,7 @@ Fixtures may live under:
 
 - `demo/` for user-facing CLI demonstrations;
 - `pkg/prmaven/testdata/` for focused parser and analyzer tests;
-- `pkg/prmaven/testdata/golden/` for human-readable output snapshots.
+- `pkg/prmaven/testdata/golden/` for human-readable text and machine-readable JSON output snapshots.
 
 Committed fixtures may include:
 
@@ -50,7 +50,8 @@ When adding or updating fixtures:
 - prefer Maven 3.9.x-compatible report shapes;
 - document any dependency on a specific Maven plugin behavior;
 - keep Maven 4 behavior out of the required baseline until a dedicated Maven 4 compatibility issue accepts it;
-- update golden files in the same pull request when text output intentionally changes;
+- update golden files in the same pull request when text or JSON output intentionally changes;
+- normalize JSON golden `projectRoot` values to `<PROJECT_ROOT>/demo/...`;
 - keep JSON output additive and compatible unless the issue explicitly allows a breaking contract change.
 
 ## Why Maven 4 Is Separate

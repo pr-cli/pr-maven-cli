@@ -516,6 +516,54 @@ func TestWriteTextMatchesGoldenFiles(t *testing.T) {
 	}
 }
 
+func TestWriteJSONMatchesGoldenFiles(t *testing.T) {
+	tests := []struct {
+		name        string
+		projectDir  string
+		projectRoot string
+		goldenPath  string
+	}{
+		{
+			name:        "multi module failure",
+			projectDir:  "../../demo/multi-module-failure",
+			projectRoot: "<PROJECT_ROOT>/demo/multi-module-failure",
+			goldenPath:  "testdata/golden/multi-module-failure.json",
+		},
+		{
+			name:        "no failure",
+			projectDir:  "../../demo/no-failure",
+			projectRoot: "<PROJECT_ROOT>/demo/no-failure",
+			goldenPath:  "testdata/golden/no-failure.json",
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			report, err := Analyze(Options{ProjectDir: tt.projectDir})
+			if err != nil {
+				t.Fatal(err)
+			}
+			report.ProjectRoot = tt.projectRoot
+
+			var output bytes.Buffer
+			if err := WriteJSON(&output, report); err != nil {
+				t.Fatal(err)
+			}
+
+			wantBytes, err := os.ReadFile(tt.goldenPath)
+			if err != nil {
+				t.Fatal(err)
+			}
+
+			got := normalizeGoldenOutput(output.String())
+			want := normalizeGoldenOutput(string(wantBytes))
+			if got != want {
+				t.Fatalf("golden JSON output mismatch\nwant:\n%s\n\ngot:\n%s", want, got)
+			}
+		})
+	}
+}
+
 func TestWriteJSONProducesStableContract(t *testing.T) {
 	report, err := Analyze(Options{ProjectDir: "../../demo/multi-module-failure"})
 	if err != nil {
@@ -580,6 +628,12 @@ var projectRootLine = regexp.MustCompile(`(?m)^Project: .+$`)
 func normalizeTextOutput(value string) string {
 	value = strings.ReplaceAll(value, "\r\n", "\n")
 	value = projectRootLine.ReplaceAllString(value, "Project: <PROJECT_ROOT>")
+	return normalizeGoldenOutput(value)
+}
+
+func normalizeGoldenOutput(value string) string {
+	value = strings.ReplaceAll(value, "\r\n", "\n")
+	value = strings.ReplaceAll(value, `\u003cPROJECT_ROOT\u003e`, "<PROJECT_ROOT>")
 	return strings.TrimRight(value, "\n")
 }
 
