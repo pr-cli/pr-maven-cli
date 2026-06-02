@@ -31,6 +31,16 @@ Committed fixtures may include:
 
 Generated artifacts outside intentional fixture paths should not be committed.
 
+## Fixture Integrity Validation
+
+Run the focused integrity check after adding, removing, or renaming committed fixture files:
+
+```bash
+go test ./pkg/prmaven -run TestFixtureIntegrity -v
+```
+
+This validation ensures expected demo and `testdata` files exist, intentionally committed `target` report and log artifacts remain present, and unexpected generated files are not added under fixture `target` directories.
+
 ## Compatibility Expectations
 
 When adding or updating fixtures:
