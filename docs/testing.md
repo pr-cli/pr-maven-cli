@@ -98,6 +98,18 @@ The `target/*-reports` directories and selected `target/*.log` files are intenti
 
 Fixture compatibility notes, including the Maven 3.9.x production baseline and Maven 4 tracking boundary, are documented in [Fixture Notes](fixtures.md).
 
+### Fixture Integrity
+
+Fixture integrity is validated by `TestFixtureIntegrity` in `pkg/prmaven`.
+
+Run the focused validation after adding, removing, or renaming committed fixture files:
+
+```bash
+go test ./pkg/prmaven -run TestFixtureIntegrity -v
+```
+
+The test checks that expected demo and `testdata` files exist, that intentionally committed `target` report and log artifacts remain present, and that unexpected generated files are not added under fixture `target` directories.
+
 ### Golden Files
 
 Golden files live under:
