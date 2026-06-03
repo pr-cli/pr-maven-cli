@@ -192,6 +192,131 @@ func TestCLIOutputFileMatrix(t *testing.T) {
 	}
 }
 
+type acceptanceModuleFilterCase struct {
+	name                string
+	args                []string
+	wantExitCode        int
+	wantStdout          []string
+	unwantedStdout      []string
+	wantJSONFindingPath []string
+}
+
+func TestCLIModuleFilterMatrix(t *testing.T) {
+	binary := buildAcceptanceBinary(t)
+	nestedProject := "../../pkg/prmaven/testdata/nested-module-project"
+
+	tests := []acceptanceModuleFilterCase{
+		{
+			name:         "text filters by artifact id",
+			args:         []string{"why", "-project", nestedProject, "-module", "service-core"},
+			wantExitCode: 1,
+			wantStdout: []string{
+				"Modules: 3 | Reports: 1 | Findings: 1",
+				"Module: service-core (platform/service-core)",
+				"maven-surefire-plugin",
+				"platform/service-core/target/surefire-reports/TEST-dev.prmaven.demo.NestedPaymentTest.xml",
+			},
+		},
+		{
+			name:                "json filters by artifact id",
+			args:                []string{"why", "-project", nestedProject, "-module", "service-core", "-format", "json"},
+			wantExitCode:        1,
+			wantJSONFindingPath: []string{"platform/service-core"},
+		},
+		{
+			name:         "text filters by module path",
+			args:         []string{"why", "-project", nestedProject, "-module", "platform/service-core"},
+			wantExitCode: 1,
+			wantStdout: []string{
+				"Modules: 3 | Reports: 1 | Findings: 1",
+				"Module: service-core (platform/service-core)",
+				"maven-surefire-plugin",
+				"Reproduce: mvn -pl platform/service-core -am -Dtest=NestedPaymentTest test",
+			},
+		},
+		{
+			name:                "json filters by module path",
+			args:                []string{"why", "-project", nestedProject, "-module", "platform/service-core", "-format", "json"},
+			wantExitCode:        1,
+			wantJSONFindingPath: []string{"platform/service-core"},
+		},
+		{
+			name:         "text no match returns zero findings",
+			args:         []string{"why", "-project", nestedProject, "-module", "does-not-exist"},
+			wantExitCode: 0,
+			wantStdout: []string{
+				"Modules: 3 | Reports: 1 | Findings: 0",
+				"No Maven test or quality failures found",
+			},
+			unwantedStdout: []string{
+				"NestedPaymentTest",
+				"maven-surefire-plugin",
+			},
+		},
+		{
+			name:                "json no match returns zero findings",
+			args:                []string{"why", "-project", nestedProject, "-module", "does-not-exist", "-format", "json"},
+			wantExitCode:        0,
+			wantJSONFindingPath: []string{},
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			stdout, stderr, exitCode := runAcceptanceBinary(t, binary, tt.args...)
+			if exitCode != tt.wantExitCode {
+				t.Fatalf("exit code = %d, want %d\nstdout:\n%s\nstderr:\n%s", exitCode, tt.wantExitCode, stdout, stderr)
+			}
+			if stderr != "" {
+				t.Fatalf("stderr = %q, want empty", stderr)
+			}
+
+			if tt.wantJSONFindingPath != nil {
+				assertAcceptanceJSONFindingPaths(t, stdout, tt.wantJSONFindingPath)
+				return
+			}
+
+			for _, expected := range tt.wantStdout {
+				if !strings.Contains(stdout, expected) {
+					t.Fatalf("stdout missing %q\n%s", expected, stdout)
+				}
+			}
+			for _, unwanted := range tt.unwantedStdout {
+				if strings.Contains(stdout, unwanted) {
+					t.Fatalf("stdout contains unwanted %q\n%s", unwanted, stdout)
+				}
+			}
+		})
+	}
+}
+
+func assertAcceptanceJSONFindingPaths(t *testing.T, output string, want []string) {
+	t.Helper()
+
+	var report struct {
+		Summary struct {
+			FindingCount int `json:"findingCount"`
+		} `json:"summary"`
+		Findings []struct {
+			ModulePath string `json:"modulePath"`
+		} `json:"findings"`
+	}
+	if err := json.Unmarshal([]byte(output), &report); err != nil {
+		t.Fatalf("output is not valid JSON: %v\n%s", err, output)
+	}
+	if report.Summary.FindingCount != len(want) {
+		t.Fatalf("finding count = %d, want %d", report.Summary.FindingCount, len(want))
+	}
+	if len(report.Findings) != len(want) {
+		t.Fatalf("findings length = %d, want %d", len(report.Findings), len(want))
+	}
+	for i, expected := range want {
+		if report.Findings[i].ModulePath != expected {
+			t.Fatalf("finding[%d].modulePath = %q, want %q", i, report.Findings[i].ModulePath, expected)
+		}
+	}
+}
+
 func assertAcceptanceOutput(t *testing.T, output string, tt acceptanceOutputCase) {
 	t.Helper()
 

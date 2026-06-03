@@ -89,6 +89,7 @@ Coverage includes:
 - parseable JSON output for both finding and no-finding workflows;
 - output-file behavior for text and JSON with temporary test files;
 - stdout behavior when `-output` is absent;
+- module filtering by artifactId, module path, no-match behavior, and filtered JSON findings;
 - invalid command and invalid format handling.
 
 ### Documented Command Smoke Tests
