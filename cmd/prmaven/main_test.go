@@ -136,6 +136,125 @@ func TestRunWritesJSONOutputFile(t *testing.T) {
 	}
 }
 
+func TestNoFailureOutputModeMatrix(t *testing.T) {
+	tests := []struct {
+		name       string
+		args       []string
+		outputFile string
+		assert     func(t *testing.T, output []byte)
+	}{
+		{
+			name:   "text stdout",
+			args:   []string{"fails", "-project", "../../demo/no-failure"},
+			assert: assertNoFailureTextReport,
+		},
+		{
+			name:   "json stdout",
+			args:   []string{"why", "-project", "../../demo/no-failure", "-format", "json"},
+			assert: assertNoFailureJSONReport,
+		},
+		{
+			name:       "text output file",
+			args:       []string{"fails", "-project", "../../demo/no-failure"},
+			outputFile: "prmaven-report.txt",
+			assert:     assertNoFailureTextReport,
+		},
+		{
+			name:       "json output file",
+			args:       []string{"why", "-project", "../../demo/no-failure", "-format", "json"},
+			outputFile: "prmaven-report.json",
+			assert:     assertNoFailureJSONReport,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			var stdout bytes.Buffer
+			var stderr bytes.Buffer
+			args := append([]string{}, tt.args...)
+			var output []byte
+
+			if tt.outputFile != "" {
+				outputPath := filepath.Join(t.TempDir(), tt.outputFile)
+				args = append(args, "-output", outputPath)
+
+				code := run(args, &stdout, &stderr)
+				if code != 0 {
+					t.Fatalf("exit code = %d, want 0\nstderr=%s\nstdout=%s", code, stderr.String(), stdout.String())
+				}
+				if stdout.Len() != 0 {
+					t.Fatalf("stdout = %q, want empty when output file is set", stdout.String())
+				}
+				if stderr.Len() != 0 {
+					t.Fatalf("stderr = %q, want empty", stderr.String())
+				}
+
+				var err error
+				output, err = os.ReadFile(outputPath)
+				if err != nil {
+					t.Fatal(err)
+				}
+			} else {
+				code := run(args, &stdout, &stderr)
+				if code != 0 {
+					t.Fatalf("exit code = %d, want 0\nstderr=%s\nstdout=%s", code, stderr.String(), stdout.String())
+				}
+				if stderr.Len() != 0 {
+					t.Fatalf("stderr = %q, want empty", stderr.String())
+				}
+
+				output = stdout.Bytes()
+			}
+
+			tt.assert(t, output)
+		})
+	}
+}
+
+func assertNoFailureTextReport(t *testing.T, output []byte) {
+	t.Helper()
+
+	text := string(output)
+	for _, expected := range []string{
+		"Modules: 2 | Reports: 1 | Findings: 0",
+		"No Maven test or quality failures found in Surefire, Failsafe, Checkstyle, SpotBugs, Maven Enforcer, or JaCoCo reports.",
+	} {
+		if !strings.Contains(text, expected) {
+			t.Fatalf("text output missing %q\n%s", expected, text)
+		}
+	}
+}
+
+func assertNoFailureJSONReport(t *testing.T, output []byte) {
+	t.Helper()
+
+	var raw map[string]json.RawMessage
+	if err := json.Unmarshal(output, &raw); err != nil {
+		t.Fatalf("output contains invalid JSON: %v\n%s", err, string(output))
+	}
+
+	var summary struct {
+		ModuleCount  int `json:"moduleCount"`
+		ReportCount  int `json:"reportCount"`
+		FindingCount int `json:"findingCount"`
+	}
+	if err := json.Unmarshal(raw["summary"], &summary); err != nil {
+		t.Fatalf("summary contains invalid JSON: %v\n%s", err, string(raw["summary"]))
+	}
+	if summary.ModuleCount != 2 {
+		t.Fatalf("module count = %d, want 2", summary.ModuleCount)
+	}
+	if summary.ReportCount != 1 {
+		t.Fatalf("report count = %d, want 1", summary.ReportCount)
+	}
+	if summary.FindingCount != 0 {
+		t.Fatalf("finding count = %d, want 0", summary.FindingCount)
+	}
+	if !bytes.Equal(bytes.TrimSpace(raw["findings"]), []byte("[]")) {
+		t.Fatalf("findings JSON = %s, want []", string(raw["findings"]))
+	}
+}
+
 func TestRunFiltersModuleByArtifactID(t *testing.T) {
 	var stdout bytes.Buffer
 	var stderr bytes.Buffer
