@@ -89,6 +89,25 @@ Coverage includes:
 - parseable JSON output for both finding and no-finding workflows;
 - invalid command and invalid format handling.
 
+### Documented Command Smoke Tests
+
+Documented command smoke tests live in `cmd/prmaven/doc_commands_test.go`.
+
+Run the focused suite after changing README command examples, usage docs, installation docs, or CLI flags:
+
+```bash
+go test ./cmd/prmaven -run TestDocumentedCommandSmokeSuite -v
+```
+
+The suite uses a compiled local `prmaven` binary and runs from the repository root so demo paths such as `demo/multi-module-failure` match the public docs. It should cover representative safe local commands only.
+
+When maintainers update documented commands:
+
+- add or update the matching table entry in `TestDocumentedCommandSmokeSuite`;
+- keep commands local-first and dependency-light;
+- use demo fixtures or temporary output files instead of a real user workspace;
+- do not include publish, push, tag, release, provider-token, package-upload, or remote API commands in this smoke suite.
+
 ### Demo Fixtures
 
 Fixtures live under `demo/`.
