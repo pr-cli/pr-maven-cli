@@ -143,6 +143,7 @@ GitHub Actions runs:
 - Go 1.22.x and the current stable Go release;
 - race detector on Linux;
 - coverage generation on Linux;
+- fixture integrity validation for committed demo and testdata artifacts;
 - a minimum total coverage gate of 70%.
 
 The CI workflow is intentionally dependency-light. Core tests do not require Maven, network services, GitHub tokens, Docker, or external APIs. The `pkg/prmaven` local-first guard fails if production core code starts importing network/provider clients or reading provider environment variables.

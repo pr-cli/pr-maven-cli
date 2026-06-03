@@ -133,6 +133,22 @@ jobs:
       - name: Validate generated reports against schema
         run: go test ./pkg/prmaven -run TestGeneratedJSONReportsValidateAgainstSchema -v
 
+  fixtures:
+    name: Fixture integrity validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Go
+        uses: actions/setup-go@v6
+        with:
+          go-version: "stable"
+          cache: false
+
+      - name: Validate committed fixture inventory
+        run: go test ./pkg/prmaven -run TestFixtureIntegrity -v
+
   build:
     name: Build (${{ matrix.goos }}/${{ matrix.goarch }})
     runs-on: ubuntu-latest
@@ -227,6 +243,7 @@ jobs:
       - race
       - coverage
       - schema
+      - fixtures
       - build
       - smoke
     steps:

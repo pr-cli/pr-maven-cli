@@ -23,6 +23,7 @@ Jobs:
 - `Race detector`: `go test -race ./...` on Linux.
 - `Coverage gate`: coverage profile with a 70% total coverage floor.
 - `JSON schema validation`: generates demo JSON reports and validates them against `schema/prmaven-report.schema.json` through Go tests.
+- `Fixture integrity validation`: runs `TestFixtureIntegrity` so committed demo and testdata fixture drift is reported before merge.
 - `Build`: cross-platform binary builds for Linux, macOS, and Windows.
 - `CLI smoke test`: exercises the compiled binary against demo fixtures.
 - `All CI checks`: stable aggregate job for future branch protection.
@@ -101,6 +102,7 @@ Before opening a PR, contributors should run:
 ```bash
 sh scripts/quality.sh
 go test ./pkg/prmaven -run TestGeneratedJSONReportsValidateAgainstSchema -v
+go test ./pkg/prmaven -run TestFixtureIntegrity -v
 PRMAVEN_COVERAGE=1 sh scripts/test.sh
 sh scripts/build.sh
 ```
@@ -110,6 +112,7 @@ On Windows PowerShell:
 ```powershell
 .\scripts\quality.ps1
 go test ./pkg/prmaven -run TestGeneratedJSONReportsValidateAgainstSchema -v
+go test ./pkg/prmaven -run TestFixtureIntegrity -v
 .\scripts\test.ps1 -Coverage
 .\scripts\build.ps1
 ```
