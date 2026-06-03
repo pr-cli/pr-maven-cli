@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
+	"os"
 	"os/exec"
 	"path/filepath"
 	"runtime"
@@ -88,6 +89,130 @@ func TestCLIAcceptanceSuite(t *testing.T) {
 				}
 			}
 		})
+	}
+}
+
+type acceptanceOutputCase struct {
+	name             string
+	format           string
+	outputFile       string
+	wantExitCode     int
+	wantStdout       []string
+	wantFileContains []string
+	wantFindingCount int
+	wantJSON         bool
+}
+
+func TestCLIOutputFileMatrix(t *testing.T) {
+	binary := buildAcceptanceBinary(t)
+
+	tests := []acceptanceOutputCase{
+		{
+			name:         "text stdout without output file",
+			format:       "text",
+			wantExitCode: 1,
+			wantStdout: []string{
+				"PR Maven CLI - Maven failure context",
+				"Modules: 3 | Reports: 2 | Findings: 2",
+				"maven-surefire-plugin",
+				"maven-failsafe-plugin",
+			},
+		},
+		{
+			name:             "json stdout without output file",
+			format:           "json",
+			wantExitCode:     1,
+			wantJSON:         true,
+			wantFindingCount: 2,
+		},
+		{
+			name:         "text output file",
+			format:       "text",
+			outputFile:   "prmaven-report.txt",
+			wantExitCode: 1,
+			wantFileContains: []string{
+				"PR Maven CLI - Maven failure context",
+				"Modules: 3 | Reports: 2 | Findings: 2",
+				"maven-surefire-plugin",
+				"maven-failsafe-plugin",
+			},
+		},
+		{
+			name:             "json output file",
+			format:           "json",
+			outputFile:       "prmaven-report.json",
+			wantExitCode:     1,
+			wantJSON:         true,
+			wantFindingCount: 2,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			outputDir := t.TempDir()
+			outputPath := filepath.Join(outputDir, "unused-report")
+			args := []string{"why", "-project", "../../demo/multi-module-failure"}
+			if tt.format != "text" {
+				args = append(args, "-format", tt.format)
+			}
+			if tt.outputFile != "" {
+				outputPath = filepath.Join(outputDir, tt.outputFile)
+				args = append(args, "-output", outputPath)
+			}
+
+			stdout, stderr, exitCode := runAcceptanceBinary(t, binary, args...)
+			if exitCode != tt.wantExitCode {
+				t.Fatalf("exit code = %d, want %d\nstdout:\n%s\nstderr:\n%s", exitCode, tt.wantExitCode, stdout, stderr)
+			}
+			if stderr != "" {
+				t.Fatalf("stderr = %q, want empty", stderr)
+			}
+
+			if tt.outputFile == "" {
+				if stdout == "" {
+					t.Fatal("stdout is empty, want report output when -output is absent")
+				}
+				if _, err := os.Stat(outputPath); !errors.Is(err, os.ErrNotExist) {
+					t.Fatalf("unexpected output file at %s when -output is absent", outputPath)
+				}
+				assertAcceptanceOutput(t, stdout, tt)
+				return
+			}
+
+			if stdout != "" {
+				t.Fatalf("stdout = %q, want empty when -output is set", stdout)
+			}
+
+			output, err := os.ReadFile(outputPath)
+			if err != nil {
+				t.Fatalf("read output file: %v", err)
+			}
+			assertAcceptanceOutput(t, string(output), tt)
+		})
+	}
+}
+
+func assertAcceptanceOutput(t *testing.T, output string, tt acceptanceOutputCase) {
+	t.Helper()
+
+	for _, expected := range append(tt.wantStdout, tt.wantFileContains...) {
+		if !strings.Contains(output, expected) {
+			t.Fatalf("output missing %q\n%s", expected, output)
+		}
+	}
+
+	if tt.wantJSON {
+		var report struct {
+			Summary struct {
+				FindingCount int `json:"findingCount"`
+			} `json:"summary"`
+		}
+		if err := json.Unmarshal([]byte(output), &report); err != nil {
+			t.Fatalf("output is not valid JSON: %v\n%s", err, output)
+		}
+		if report.Summary.FindingCount != tt.wantFindingCount {
+			t.Fatalf("finding count = %d, want %d", report.Summary.FindingCount, tt.wantFindingCount)
+		}
 	}
 }
 

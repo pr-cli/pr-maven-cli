@@ -87,6 +87,8 @@ Coverage includes:
 - non-zero exit when findings exist;
 - zero exit when no findings exist;
 - parseable JSON output for both finding and no-finding workflows;
+- output-file behavior for text and JSON with temporary test files;
+- stdout behavior when `-output` is absent;
 - invalid command and invalid format handling.
 
 ### Documented Command Smoke Tests
