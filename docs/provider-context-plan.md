@@ -71,3 +71,4 @@ Detailed package-boundary guidance lives in [Provider Adapter Package Boundaries
 Fixture and fake-client guidance lives in [Provider Fixtures And Mocks](provider-fixtures-and-mocks.md).
 Provider failure behavior lives in [Provider Errors And Offline Fallbacks](provider-errors-and-fallbacks.md).
 GitHub read-token expectations live in [GitHub Provider Permissions](github-provider-permissions.md).
+Changed-file fixture expectations live in [Changed-Files Fixture Contract](changed-files-fixture-contract.md).
