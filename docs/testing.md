@@ -170,6 +170,8 @@ GitHub Actions runs:
 
 The CI workflow is intentionally dependency-light. Core tests do not require Maven, network services, GitHub tokens, Docker, or external APIs. The `pkg/prmaven` local-first guard fails if production core code starts importing network/provider clients or reading provider environment variables.
 
+Future provider-context tests should follow the [Provider Fixtures And Mocks](provider-fixtures-and-mocks.md) contract so default tests stay fixture-driven and credential-free.
+
 ## Contributor Expectations
 
 For parser changes:

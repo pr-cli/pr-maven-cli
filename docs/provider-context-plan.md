@@ -68,3 +68,4 @@ Every provider-context issue should keep:
 Ready design issues signal that contributors may start drafting contracts. Blocked implementation issues signal that the repo is still waiting for the prerequisite contract, fixture, or mock design.
 
 Detailed package-boundary guidance lives in [Provider Adapter Package Boundaries](provider-adapter-boundaries.md).
+Fixture and fake-client guidance lives in [Provider Fixtures And Mocks](provider-fixtures-and-mocks.md).
