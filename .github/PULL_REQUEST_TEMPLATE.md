@@ -2,6 +2,15 @@
 
 Explain what changed and why.
 
+## MVP Validation Checklist
+
+Use the [testing guide](https://github.com/pr-cli/pr-maven-cli/blob/main/docs/testing.md) and [MVP acceptance checklist](https://github.com/pr-cli/pr-maven-cli/blob/main/docs/mvp-acceptance.md) to choose the checks that apply to this change.
+
+- [ ] Relevant local checks were run, or this is a documentation-only/no-runtime-impact PR and the reason is explained below
+- [ ] User-facing CLI, output, or JSON changes include focused CLI, smoke, golden, schema, or compatibility validation
+- [ ] Parser, fixture, or report changes include sanitized fixtures and fixture integrity validation when applicable
+- [ ] Documentation, examples, compatibility, and local-first impact are updated or called out when applicable
+
 ## Validation
 
 - [ ] `go test ./...`
