@@ -72,6 +72,8 @@ Core analyzer guardrails:
 - Production core code must not import network/provider clients.
 - Production core code must not read provider environment variables.
 
+Future optional GitHub provider permissions are documented in [GitHub Provider Permissions](github-provider-permissions.md). Those permissions are for Stage 3 provider context only; they do not change the Stage 1 local analyzer contract.
+
 Expected empty surfaces during stabilization:
 
 - GitHub Actions secrets.

@@ -674,6 +674,8 @@ Depends on: #79 and #82.
 
 Labels: `stage: 3`, `area: docs`, `area: github`, `good first contribution`, `oss first friendly`, `agent-friendly`, `status: ready`
 
+Status: completed by [GitHub Provider Permissions](../../docs/github-provider-permissions.md).
+
 Acceptance criteria:
 
 - List planned GitHub operations and required permissions.
