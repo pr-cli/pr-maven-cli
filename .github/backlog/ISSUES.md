@@ -708,6 +708,8 @@ Depends on: #79, #84, and #85.
 
 Labels: `stage: 3`, `area: github`, `area: test`, `help wanted`, `need help`, `agent-friendly`, `status: ready`
 
+Status: completed by [Check-Runs Fixture Contract](../../docs/check-runs-fixture-contract.md).
+
 Acceptance criteria:
 
 - Define a sanitized fixture shape for check runs.
