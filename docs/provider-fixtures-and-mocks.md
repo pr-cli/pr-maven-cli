@@ -4,7 +4,7 @@ Stage 3 provider behavior must be testable without live GitHub, GitLab, CI provi
 
 This document defines the fixture and fake-client contract for optional provider context.
 
-Changed-files fixtures have a dedicated contract in [Changed-Files Fixture Contract](changed-files-fixture-contract.md).
+Changed-files fixtures have a dedicated contract in [Changed-Files Fixture Contract](changed-files-fixture-contract.md). Check-run fixtures have a dedicated contract in [Check-Runs Fixture Contract](check-runs-fixture-contract.md).
 
 ## Fixture Principles
 
