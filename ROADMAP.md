@@ -118,6 +118,14 @@ Acceptance criteria:
 
 Expected confidence: high.
 
+### Stage 3 Readiness Gate
+
+Before implementation-heavy provider adapters land, maintainers should confirm that the MVP acceptance checklist, release readiness checklist, JSON/schema validation, fixture integrity validation, documented-command smoke tests, module-filter/output-file E2E coverage, and no-network core analyzer guard are still passing or have been explicitly reviewed.
+
+Stage 3 design issues may continue before adapter implementation, but runtime network adapters remain optional. Provider tokens, GitHub/GitLab clients, CI APIs, hosted services, and agent-oriented context must stay outside core Maven report analysis unless a focused Stage 3 issue explicitly scopes the change.
+
+The first Stage 3 architecture/design links to use after this gate are [#82](https://github.com/pr-cli/pr-maven-cli/issues/82), [#83](https://github.com/pr-cli/pr-maven-cli/issues/83), [#84](https://github.com/pr-cli/pr-maven-cli/issues/84), [#85](https://github.com/pr-cli/pr-maven-cli/issues/85), [#86](https://github.com/pr-cli/pr-maven-cli/issues/86), [#87](https://github.com/pr-cli/pr-maven-cli/issues/87), [#89](https://github.com/pr-cli/pr-maven-cli/issues/89), [#90](https://github.com/pr-cli/pr-maven-cli/issues/90), [#91](https://github.com/pr-cli/pr-maven-cli/issues/91), [#92](https://github.com/pr-cli/pr-maven-cli/issues/92), [#93](https://github.com/pr-cli/pr-maven-cli/issues/93), and [#94](https://github.com/pr-cli/pr-maven-cli/issues/94). After the gate is merged, [#102](https://github.com/pr-cli/pr-maven-cli/issues/102) should review which Stage 3 issues can move from `status: blocked` to `status: ready`.
+
 ## Stage 3 - PR and CI Context Layer
 
 Target window: July 20, 2026 to September 6, 2026.
