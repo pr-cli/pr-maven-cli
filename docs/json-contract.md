@@ -4,6 +4,8 @@ PR Maven CLI emits JSON for CI systems, bots, and coding agents that need determ
 
 For the meaning of deterministic JSON output and how it relates to human-readable text output, read [Deterministic Output](deterministic-output.md).
 
+Optional Stage 3 PR and CI context extensions are planned as additive fields in [PR Context JSON Extension Contract](pr-context-json-extension.md).
+
 Run:
 
 ```bash
