@@ -691,6 +691,8 @@ Depends on: #79, #84, and #85.
 
 Labels: `stage: 3`, `area: github`, `area: test`, `help wanted`, `need help`, `agent-friendly`, `status: ready`
 
+Status: completed by [Changed-Files Fixture Contract](../../docs/changed-files-fixture-contract.md).
+
 Acceptance criteria:
 
 - Define a sanitized fixture shape for changed files.
