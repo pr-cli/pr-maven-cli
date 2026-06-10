@@ -66,3 +66,5 @@ Every provider-context issue should keep:
 - at least one contributor-fit label such as `help wanted`, `need help`, `good first contribution`, `oss first friendly`, or `agent-friendly`.
 
 Ready design issues signal that contributors may start drafting contracts. Blocked implementation issues signal that the repo is still waiting for the prerequisite contract, fixture, or mock design.
+
+Detailed package-boundary guidance lives in [Provider Adapter Package Boundaries](provider-adapter-boundaries.md).

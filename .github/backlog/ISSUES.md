@@ -621,6 +621,8 @@ Issue: #84
 
 Depends on: #79 and #82.
 
+Status: completed by [Provider Adapter Package Boundaries](../../docs/provider-adapter-boundaries.md).
+
 Labels: `stage: 3`, `area: architecture`, `help wanted`, `need help`, `status: ready`
 
 Acceptance criteria:
