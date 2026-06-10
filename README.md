@@ -58,6 +58,7 @@ This is useful for:
 - [Permission posture](docs/permissions.md)
 - [Testing](docs/testing.md)
 - [CI/CD](docs/ci.md)
+- [CI log privacy](docs/ci-log-privacy.md)
 - [Release process](docs/release.md)
 - [Governance](GOVERNANCE.md)
 - [Maintainers](MAINTAINERS.md)

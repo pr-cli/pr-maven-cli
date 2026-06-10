@@ -12,6 +12,9 @@ Please report security concerns privately to the repository owner before opening
 
 Do not include private CI logs, credentials, tokens, proprietary source code, or customer data in public issues.
 
+Before sharing Maven reports or CI output publicly, follow the
+[CI log privacy guide](docs/ci-log-privacy.md).
+
 ## Data Handling Principles
 
 - No telemetry by default.
