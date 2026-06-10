@@ -71,6 +71,8 @@ Fakes should not read environment variables unless a test explicitly validates t
 
 Provider failures should degrade gracefully.
 
+The canonical error categories are defined in [Provider Errors And Offline Fallbacks](provider-errors-and-fallbacks.md).
+
 Expected behavior:
 
 - missing token: provider context is unavailable, local Maven findings remain;
