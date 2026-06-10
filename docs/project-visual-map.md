@@ -2,7 +2,7 @@
 
 This document gives maintainers and contributors a quick visual view of what is done, what comes next, and how the backlog is organized.
 
-Use it together with [ROADMAP.md](../ROADMAP.md), the [MVP hardening plan](mvp-hardening-plan.md), the [v0.1.0 release snapshot](release-snapshot-v0.1.0.md), and the GitHub issue labels.
+Use it together with [ROADMAP.md](../ROADMAP.md), the [MVP hardening plan](mvp-hardening-plan.md), the [v0.1.0 release snapshot](release-snapshot-v0.1.0.md), the [v0.3.0 release acceptance checklist](release-acceptance-v0.3.0.md), and the GitHub issue labels.
 
 ## One-Screen Status
 
@@ -184,6 +184,7 @@ This document is a navigation aid. The source of truth remains:
 - [Roadmap](../ROADMAP.md)
 - [MVP hardening plan](mvp-hardening-plan.md)
 - [v0.1.0 release snapshot](release-snapshot-v0.1.0.md)
+- [v0.3.0 release acceptance checklist](release-acceptance-v0.3.0.md)
 - [MVP acceptance checklist](mvp-acceptance.md)
 - [Implementation status](implementation-status.md)
 - [Label guide](labels.md)

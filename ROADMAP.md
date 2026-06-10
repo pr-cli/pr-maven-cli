@@ -134,6 +134,8 @@ Target release: `v0.3.0`.
 
 Goal: connect local Maven evidence to pull request context while keeping the core local-first and deterministic.
 
+Release gate: [v0.3.0 release acceptance checklist](docs/release-acceptance-v0.3.0.md).
+
 Planned work:
 
 - GitHub adapter for changed files and check runs.
