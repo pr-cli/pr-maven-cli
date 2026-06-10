@@ -725,6 +725,8 @@ Depends on: #79, #83, #84, #85, and #39.
 
 Labels: `stage: 3`, `area: architecture`, `area: docs`, `help wanted`, `need help`, `status: ready`
 
+Status: completed by [PR Context JSON Extension Contract](../../docs/pr-context-json-extension.md).
+
 Acceptance criteria:
 
 - Propose additive JSON fields for PR context.
