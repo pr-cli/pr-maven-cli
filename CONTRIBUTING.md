@@ -47,6 +47,9 @@ Every new issue and pull request receives the standard contributor thank-you mes
 - Do not add telemetry.
 - Do not require external services for core tests.
 - Do not commit generated binaries, local caches, or private CI logs.
+- Follow the [CI log privacy guide](docs/ci-log-privacy.md) before pasting
+  Maven reports, CI output, or provider metadata into public issues, pull
+  requests, fixtures, or examples.
 - Keep branch names, pull request titles, commit messages, and merge messages focused on the product change. Do not include coding agent or tool names such as `codex`, `claude`, `gemini`, `copilot`, `cursor`, `windsurf`, `aider`, or `devin`.
 
 ## Good First Contributions
