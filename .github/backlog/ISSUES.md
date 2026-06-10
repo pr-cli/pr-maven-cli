@@ -535,7 +535,7 @@ Implementation work in this stage should remain gated by the Stage 2.1 readiness
 
 Provider-context planning root:
 
-- #82 - `[Stage 3] Provider context planning map`
+- #82 - `[Stage 3] Provider context planning map`. Completed by [`docs/provider-context-plan.md`](../../docs/provider-context-plan.md).
 
 Suggested planning merge order:
 

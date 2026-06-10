@@ -187,6 +187,7 @@ This document is a navigation aid. The source of truth remains:
 - [MVP hardening plan](mvp-hardening-plan.md)
 - [v0.1.0 release snapshot](release-snapshot-v0.1.0.md)
 - [v0.3.0 release acceptance checklist](release-acceptance-v0.3.0.md)
+- [Provider context plan](provider-context-plan.md)
 - [MVP acceptance checklist](mvp-acceptance.md)
 - [Implementation status](implementation-status.md)
 - [Label guide](labels.md)

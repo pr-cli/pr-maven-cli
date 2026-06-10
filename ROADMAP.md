@@ -136,6 +136,8 @@ Goal: connect local Maven evidence to pull request context while keeping the cor
 
 Release gate: [v0.3.0 release acceptance checklist](docs/release-acceptance-v0.3.0.md).
 
+Planning map: [Provider context plan](docs/provider-context-plan.md).
+
 Planned work:
 
 - GitHub adapter for changed files and check runs.
