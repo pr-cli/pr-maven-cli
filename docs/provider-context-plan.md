@@ -75,3 +75,4 @@ Changed-file fixture expectations live in [Changed-Files Fixture Contract](chang
 Check-run fixture expectations live in [Check-Runs Fixture Contract](check-runs-fixture-contract.md).
 PR context JSON extension expectations live in [PR Context JSON Extension Contract](pr-context-json-extension.md).
 Markdown PR summary expectations live in [Markdown PR Summary Contract](markdown-pr-summary-contract.md).
+Command UX boundaries live in [Command UX Boundaries](command-ux-boundaries.md).

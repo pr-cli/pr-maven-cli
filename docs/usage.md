@@ -24,6 +24,8 @@ prmaven version
 
 Stage 1 treats `fails` and `why` as equivalent analysis commands. The separate names leave room for future UX where `fails` lists failures and `why` adds richer causality evidence.
 
+Future command boundaries for `why`, `explain`, and `ci` are documented in [Command UX Boundaries](command-ux-boundaries.md).
+
 Built-in help is available with `prmaven -h`, `prmaven --help`, `prmaven -help`, or `prmaven help`. It lists commands, flags, examples, and exit codes without requiring network access or extra dependencies.
 
 ## Flags

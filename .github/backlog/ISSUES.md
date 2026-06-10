@@ -759,6 +759,8 @@ Depends on: #79.
 
 Labels: `stage: 3`, `area: cli`, `area: docs`, `help wanted`, `need help`, `oss first friendly`, `status: ready`
 
+Status: completed by [Command UX Boundaries](../../docs/command-ux-boundaries.md).
+
 Acceptance criteria:
 
 - Define user intent for `why`, `explain`, and `ci`.
