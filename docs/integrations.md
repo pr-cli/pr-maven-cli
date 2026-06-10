@@ -25,6 +25,8 @@ This means GitHub is the only platform with official project automation and exam
 
 Native PR and CI context adapters are planned for Stage 3.
 
+The planning lane is documented in the [Provider Context Plan](provider-context-plan.md).
+
 Planned order:
 
 1. GitHub adapter for changed files and check runs.
