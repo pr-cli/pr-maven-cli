@@ -74,3 +74,4 @@ GitHub read-token expectations live in [GitHub Provider Permissions](github-prov
 Changed-file fixture expectations live in [Changed-Files Fixture Contract](changed-files-fixture-contract.md).
 Check-run fixture expectations live in [Check-Runs Fixture Contract](check-runs-fixture-contract.md).
 PR context JSON extension expectations live in [PR Context JSON Extension Contract](pr-context-json-extension.md).
+Markdown PR summary expectations live in [Markdown PR Summary Contract](markdown-pr-summary-contract.md).
