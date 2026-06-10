@@ -585,7 +585,9 @@ Issue: #102
 
 Depends on: #79.
 
-Labels: `stage: 2.1`, `enhancement`, `area: validation`, `area: docs`, `help wanted`, `need help`, `status: blocked`
+Status: completed by the post-gate label review after #79, #100, and #101.
+
+Labels: `stage: 2.1`, `enhancement`, `area: validation`, `area: docs`, `help wanted`, `need help`, `status: ready`
 
 Acceptance criteria:
 
@@ -593,6 +595,12 @@ Acceptance criteria:
 - Unblock only design issues whose dependencies are closed.
 - Preserve implementation-heavy issues as blocked until contracts and mocks exist.
 - Update the visual project map when labels change.
+
+Audit result:
+
+- Unblocked the Stage 3 design-contract lane #82-#94 after #79, #100, and #101 were available.
+- Kept implementation-heavy issues blocked, including #21, #22, #23, #24, #25, #26, #27, #28, #29, #34, and #36.
+- Confirmed the open issue set has stage, area, and status labels at the time of the review.
 
 #### P1. Add provider-context dependency map to contributor backlog
 
@@ -611,9 +619,9 @@ Acceptance criteria:
 
 Issue: #84
 
-Depends on: #79, #22.
+Depends on: #79 and #82.
 
-Labels: `stage: 3`, `area: architecture`, `help wanted`, `need help`, `status: blocked`
+Labels: `stage: 3`, `area: architecture`, `help wanted`, `need help`, `status: ready`
 
 Acceptance criteria:
 
@@ -626,9 +634,9 @@ Acceptance criteria:
 
 Issue: #85
 
-Depends on: #79, #22.
+Depends on: #79 and #82.
 
-Labels: `stage: 3`, `area: architecture`, `area: test`, `help wanted`, `need help`, `agent-friendly`, `status: blocked`
+Labels: `stage: 3`, `area: architecture`, `area: test`, `help wanted`, `need help`, `agent-friendly`, `status: ready`
 
 Acceptance criteria:
 
@@ -643,7 +651,7 @@ Issue: #83
 
 Depends on: #79, #84.
 
-Labels: `stage: 3`, `area: architecture`, `area: docs`, `help wanted`, `need help`, `status: blocked`
+Labels: `stage: 3`, `area: architecture`, `area: docs`, `help wanted`, `need help`, `status: ready`
 
 Acceptance criteria:
 
@@ -656,9 +664,9 @@ Acceptance criteria:
 
 Issue: #86
 
-Depends on: #79, #22.
+Depends on: #79 and #82.
 
-Labels: `stage: 3`, `area: docs`, `area: github`, `good first contribution`, `oss first friendly`, `agent-friendly`, `status: blocked`
+Labels: `stage: 3`, `area: docs`, `area: github`, `good first contribution`, `oss first friendly`, `agent-friendly`, `status: ready`
 
 Acceptance criteria:
 
@@ -671,9 +679,9 @@ Acceptance criteria:
 
 Issue: #87
 
-Depends on: #21, #84, #85.
+Depends on: #79, #84, and #85.
 
-Labels: `stage: 3`, `area: github`, `area: test`, `help wanted`, `need help`, `agent-friendly`, `status: blocked`
+Labels: `stage: 3`, `area: github`, `area: test`, `help wanted`, `need help`, `agent-friendly`, `status: ready`
 
 Acceptance criteria:
 
@@ -686,9 +694,9 @@ Acceptance criteria:
 
 Issue: #89
 
-Depends on: #23, #84, #85.
+Depends on: #79, #84, and #85.
 
-Labels: `stage: 3`, `area: github`, `area: test`, `help wanted`, `need help`, `agent-friendly`, `status: blocked`
+Labels: `stage: 3`, `area: github`, `area: test`, `help wanted`, `need help`, `agent-friendly`, `status: ready`
 
 Acceptance criteria:
 
@@ -701,9 +709,9 @@ Acceptance criteria:
 
 Issue: #90
 
-Depends on: #25, #26, #39, #79.
+Depends on: #79, #83, #84, #85, and #39.
 
-Labels: `stage: 3`, `area: architecture`, `area: docs`, `help wanted`, `need help`, `status: blocked`
+Labels: `stage: 3`, `area: architecture`, `area: docs`, `help wanted`, `need help`, `status: ready`
 
 Acceptance criteria:
 
@@ -716,9 +724,9 @@ Acceptance criteria:
 
 Issue: #88
 
-Depends on: #29, #90.
+Depends on: #79 and #90.
 
-Labels: `stage: 3`, `area: cli`, `area: docs`, `help wanted`, `need help`, `agent-friendly`, `status: blocked`
+Labels: `stage: 3`, `area: cli`, `area: docs`, `help wanted`, `need help`, `agent-friendly`, `status: ready`
 
 Acceptance criteria:
 
@@ -731,9 +739,9 @@ Acceptance criteria:
 
 Issue: #91
 
-Depends on: #27, #28, #79.
+Depends on: #79.
 
-Labels: `stage: 3`, `area: cli`, `area: docs`, `help wanted`, `need help`, `oss first friendly`, `status: blocked`
+Labels: `stage: 3`, `area: cli`, `area: docs`, `help wanted`, `need help`, `oss first friendly`, `status: ready`
 
 Acceptance criteria:
 
@@ -746,9 +754,9 @@ Acceptance criteria:
 
 Issue: #93
 
-Depends on: #36, #79.
+Depends on: #79.
 
-Labels: `stage: 3`, `area: ci`, `area: test`, `help wanted`, `need help`, `agent-friendly`, `status: blocked`
+Labels: `stage: 3`, `area: ci`, `area: test`, `help wanted`, `need help`, `agent-friendly`, `status: ready`
 
 Acceptance criteria:
 
@@ -761,9 +769,9 @@ Acceptance criteria:
 
 Issue: #92
 
-Depends on: #33, #84, #85.
+Depends on: #79, #33, #84, and #85.
 
-Labels: `stage: 3`, `area: gitlab`, `area: architecture`, `help wanted`, `need help`, `waiting help`, `status: blocked`
+Labels: `stage: 3`, `area: gitlab`, `area: architecture`, `help wanted`, `need help`, `waiting help`, `status: ready`
 
 Acceptance criteria:
 
@@ -776,9 +784,9 @@ Acceptance criteria:
 
 Issue: #94
 
-Depends on: #34, #90, #79.
+Depends on: #79 and #90.
 
-Labels: `stage: 3`, `area: agent`, `area: docs`, `help wanted`, `need help`, `waiting help`, `status: blocked`
+Labels: `stage: 3`, `area: agent`, `area: docs`, `help wanted`, `need help`, `waiting help`, `status: ready`
 
 Acceptance criteria:
 

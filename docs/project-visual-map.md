@@ -22,7 +22,9 @@ Current interpretation:
 - Stage 1 is shipped as `v0.1.0`.
 - Stage 2 Maven signal and contributor foundations are in place.
 - Stage 2.1 is the hardening lane before broad Stage 3 work.
-- Stage 3 is well mapped, but implementation-heavy issues should wait for readiness gates and design contracts.
+- Stage 3 readiness gates are defined through #79, #100, and #102.
+- Stage 3 design contracts #82-#94 are the first ready lane after the post-gate label review.
+- Implementation-heavy issues should wait for the related design contracts, fixtures, and mocks.
 
 ## What Is Already Done
 
@@ -70,7 +72,7 @@ Recommended maintainer order:
 3. Add fixture and JSON validation.
 4. Move stable validation into CI.
 5. Complete the Stage 3 readiness gate.
-6. Unblock the first Stage 3 design issues.
+6. Keep the first Stage 3 design issues #82-#94 ready after the post-gate label review.
 7. Start implementation only after contracts and mocks exist.
 
 ## Stage 3 Dependency Map
@@ -170,12 +172,12 @@ flowchart LR
     B --> C["Close #69 #70 #72"]
     C --> D["Close #71 #73"]
     D --> E["Close #67 #68 #74 #76"]
-    E --> F["Close #77 #79 #102\nKeep #80 guard green"]
-    F --> G["Close #100 and keep #101 current"]
-    G --> H["Unblock early Stage 3 design issues"]
+    E --> F["Close #77 #79 #100 #102\nKeep #80 guard green"]
+    F --> G["Keep #101 current"]
+    G --> H["Work ready Stage 3 design issues\n#82-#94"]
 ```
 
-After that, Stage 3 implementation can begin with much lower ambiguity.
+After that, Stage 3 implementation can begin with much lower ambiguity, but implementation-heavy issues should stay blocked until their related design contract lands.
 
 ## Source Of Truth
 
