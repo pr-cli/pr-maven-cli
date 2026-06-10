@@ -2,7 +2,7 @@
 
 PR Maven CLI releases are driven by Git tags.
 
-Use this process together with the [MVP acceptance checklist](mvp-acceptance.md) for `v0.x` releases.
+Use this process together with the [MVP acceptance checklist](mvp-acceptance.md) for `v0.x` releases. For the Stage 3 target release, also use the [v0.3.0 release acceptance checklist](release-acceptance-v0.3.0.md).
 
 For the first MVP release record, see the [v0.1.0 release snapshot](release-snapshot-v0.1.0.md).
 

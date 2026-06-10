@@ -555,6 +555,8 @@ Suggested planning merge order:
 
 Issue: #100
 
+Status: completed by the [v0.3.0 release acceptance checklist](../../docs/release-acceptance-v0.3.0.md).
+
 Labels: `stage: 3`, `enhancement`, `area: docs`, `area: validation`, `help wanted`, `need help`, `status: ready`
 
 Acceptance criteria:
