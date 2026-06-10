@@ -21,6 +21,8 @@ For the same issue in the same project, deterministic text should keep:
 
 The text format is meant for humans, so wording may improve over time. When wording changes intentionally, golden tests should be updated in the same pull request and the change should be documented as user-facing output.
 
+Future Markdown PR summary output has a separate Stage 3 contract in [Markdown PR Summary Contract](markdown-pr-summary-contract.md).
+
 ## Deterministic JSON
 
 Deterministic JSON is the structured output printed by commands such as:

@@ -742,6 +742,8 @@ Depends on: #79 and #90.
 
 Labels: `stage: 3`, `area: cli`, `area: docs`, `help wanted`, `need help`, `agent-friendly`, `status: ready`
 
+Status: completed by [Markdown PR Summary Contract](../../docs/markdown-pr-summary-contract.md).
+
 Acceptance criteria:
 
 - Define required sections for findings, reproduction commands, confidence, and provider context.
