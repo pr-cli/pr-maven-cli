@@ -27,6 +27,7 @@ Native PR and CI context adapters are planned for Stage 3.
 
 The planning lane is documented in the [Provider Context Plan](provider-context-plan.md).
 Package-boundary rules are documented in [Provider Adapter Package Boundaries](provider-adapter-boundaries.md).
+GitHub token and read-permission expectations are documented in [GitHub Provider Permissions](github-provider-permissions.md).
 
 Planned order:
 
