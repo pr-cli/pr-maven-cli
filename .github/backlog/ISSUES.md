@@ -638,6 +638,8 @@ Issue: #85
 
 Depends on: #79 and #82.
 
+Status: completed by [Provider Fixtures And Mocks](../../docs/provider-fixtures-and-mocks.md).
+
 Labels: `stage: 3`, `area: architecture`, `area: test`, `help wanted`, `need help`, `agent-friendly`, `status: ready`
 
 Acceptance criteria:
