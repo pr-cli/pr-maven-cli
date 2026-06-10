@@ -69,3 +69,4 @@ Ready design issues signal that contributors may start drafting contracts. Block
 
 Detailed package-boundary guidance lives in [Provider Adapter Package Boundaries](provider-adapter-boundaries.md).
 Fixture and fake-client guidance lives in [Provider Fixtures And Mocks](provider-fixtures-and-mocks.md).
+Provider failure behavior lives in [Provider Errors And Offline Fallbacks](provider-errors-and-fallbacks.md).

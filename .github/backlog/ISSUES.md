@@ -655,6 +655,8 @@ Issue: #83
 
 Depends on: #79, #84.
 
+Status: completed by [Provider Errors And Offline Fallbacks](../../docs/provider-errors-and-fallbacks.md).
+
 Labels: `stage: 3`, `area: architecture`, `area: docs`, `help wanted`, `need help`, `status: ready`
 
 Acceptance criteria:
